@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<style>
+p.groove {background-color: lightgrey;}
+span.groove1 {border-left-style: groove;background-color: lightgrey;}
+</style>
+<body>
+<p><b>The optics of the eye</b></p>
+
+<canvas id="myCanvas" width="420" height="120" style="border:1px solid #d3d3d3;">
+</canvas>
+
+<div class="slidecontainer">
+	<p>Object distance (u):<sub>100
+	<input type="range" min="100" max="3000" value="3000" id="ObjLoc">3000</sub>
+	<span class="groove1" id="ObjLocValue" ></span>mm</p>
+	
+	<p>Eye Diopter (1/f):<sub><span id="DiopterMin" > </span>
+	<input type="range" min="50" max="60" value="50" id="Diopter">
+	<span id="DiopterMax" > </span></sub>
+	<span class="groove1" id="DiopterValue" ></span>m<sup>-1</sup></p>
+	
+	<p>Correction:<sub><span id="CorrMin" > </span>
+	<input type="range" min="-10" max="10" value="0" id="Corr">
+	<span id="CorrMax" > </span></sub>
+	<span class="groove1" id="CorrValue" ></span>m<sup>-1</sup></p>
+	
+	<p>Eye Diameter:<sub><span id="DiamMin" > </span>
+	<input type="range" min="16" max="22" value="20" id="Diam">
+	<span id="DiamMax" > </span></sub>
+	<span class="groove1" id="DiamValue" ></span>mm</p>
+	
+	<p>Image distance (v):<span id="ImageLocValue" > </span>mm</p>
+	
+	<button type="button" id="Emmetropia">Emmetropia</button>
+	<button type="button" id="Presbyopia">Presbyopia</button></p>
+	
+	<p>Myopia (Nearsightedness)
+	<button type="button" id="MyopiaDiopter">Myopia (Diopter)</button>
+	<button type="button" id="MyopiaDiam">Myopia (Eye Diameter)</button>
+	
+	<p>Hyperopia (Farsightedness)
+	<button type="button" id="HyperopiaDiopter">Hyperopia (Diopter)</button>
+	<button type="button" id="HyperopiaDiam">Hyperopia (Eye Diameter)</button>
+	<p><a href="#Accommodation">Accommodation</a>
+	<a href="#Presbyopia">Presbyopia</a>
+	<a href="#Myopia">Myopia</a>
+	<a href="#Hyperopia">Hyperopia</a>
+	
+	<p>The eye is an adaptive optical system comprising of a cornea and a lens. 	
+	<li><a name="Accommodation"><b>Accommodation</b> is the process by which the shape of the lens can be altered to change its power when the eye needs to focus at different distances. 
+	In this tutorial we will see how eye optics and anatomy combine to focus the image on the retina (blue). 
+	We will start with an image that is far from the observer's eye. Light rays from such a distant object are parallel and are focused on the retina.
+	Move the object closer by changing the value of the <b>Object distance</b> slider. At a close distance the focus moves beyond the retina. 
+	<li><b>Eye diopter</b> determines the accommodation power of the eye. Change it to get a sharp retinal image. Now move the object far away. What happened to the image?
+	<p><b>Eye defects:</b> 
+	<li><a name="Presbyopia"><b>Presbyopia:</b> a diminished ability to focus on proximal objects. 
+	As the age progresses, the power of accommodation decreases due to weakening of the ciliary muscles and hardening of the lens.
+	Click on <b>Presbyopia</b> button. Try to focus on a near-by object. Can you <b>correct</b> the condition? What lens do you need? Do you need the correction for distal objects?
+	<p><li><a name="Myopia"><b>Myopia (Nearsightedness):</b> impaired vision where a person sees clearly near objects, but distant objects are blurred.
+	The defect is caused by the elongation of the eyeball or excessive curvature of the cornea.
+	Select <b>Myopia (Diopter)</b>. Note the change in the minimal eye diopter. Can you focus the distant object now? Do the same test for <b>Myopia (Eye Diameter)</b>.
+	Can you see a difference between an eye that has good focusing abilities (<b>Emmetropia</b>) and an eye with presbyopia?
+	What corrective measures would you need to focus on far-away objects?
+	<p><li><a name="Hyperopia"><b>Hyperopia (Farsightedness):</b>it is the opposite of shortsightedness and it is a defect in vision where a person sees near objects with blurred vision, but distant objects are clearly visible. 
+	The defect occurs when the eyeball is too short or when the focal length is too great. Repeat the manipulations done above. How does <b>presbyopia</b> affect the condition?
+	
+	<p><b>Notes:</b></p>
+	<p>The thin lens equation: 1/f=1/u+1/v </p>
+	<p>Where <b>f</b> is the focal length of the lens, <b>u</b> is the object distance, and <b>v</b> is the image distance. (Typical units: mm).
+	The <b>1/f</b> is the power of lens which is measured in <b>diopters</b> (units: m<sup>-1</sup>)</p>
+	After entering into the eye through the cornea, light is refracted by the cornea and lens. 
+	The transparent front part of the eye, the <b>cornea</b> plays the most important part in refraction.
+	While the cornea contributes most of the eye's focusing power, its focus is fixed. 
+	The curvature of the <b>lens</b>, on the other hand, can be adjusted to "tune" the focus the image on the <b>retina</b> in the back of the eye depending upon the object's distance.
+	The <b>iris</b> is controlling the amount of light rays enter into its opening which is called pupil by it’s aperture stop mechanism. 
+	This aperture stop is a very important component of an optical system, affecting a wide range of optical processes.
+	Subsequently the light beam projected to the inner layer of the eye, the retina , which is an extension of the central nervous system. the image on the retina is inverted - like a camera and is connected to the brain by the optic nerve.
+	<p><b>Near-sightedness</b>, also known as short-sightedness and <b>myopia</b>, is a condition of the eye where light focuses in front of, instead of on, the retina. 
+	Severe near-sightedness increases the risk of retinal detachment, cataracts, and glaucoma.
+	The underlying mechanism involves the length of the eyeball growing too long or less commonly the lens being too strong.
+	There is tentative evidence that the risk of near-sightedness can be decreased by having young children spend more time outside.</p>
+	<a href="https://en.wikipedia.org/wiki/Near-sightedness">https://en.wikipedia.org/wiki/Near-sightedness</a>
+	</p>In some countries, the prevalence of myopia is reaching epidemic proportions:
+	</p><a href="https://www.nature.com/news/the-myopia-boom-1.17120">https://www.nature.com/news/the-myopia-boom-1.17120></a>
+	<p><b>Far-sightedness</b>, also known as <b>hyperopia</b>, is a condition of the eye in which light is focused behind, instead of on, the retina.
+	As the condition worsens, objects at all distances may be blurry.
+	Often it occurs when the eyeball is too short, or the lens or cornea is misshapen.
+	Far-sightedness primarily affects young children, with rates of 8% at 6 years and 1% at 15 years.
+	It then becomes more common again after the age of 40, affecting about half of people.
+	Far-sightedness can have rare complications such as strabismus and amblyopia. 
+	At a young age, severe far-sightedness can cause the child to have double vision as a result of "over-focusing".
+	The signs and symptoms of far-sightedness are blurry vision, headaches, and eye strain.
+	</p><a href="https://en.wikipedia.org/wiki/Far-sightedness">https://en.wikipedia.org/wiki/Far-sightedness</a>
+	</p><a href="https://www.wikilectures.eu/w/Eye_as_an_optical_system">https://www.wikilectures.eu/w/Eye_as_an_optical_system</a>
+
+	</div>
+	
+	
+	</p><i> Composed by Alon Poleg-Polsky, 2019</p>alon.poleg-polsky@ucdenver.edu</i>
+
+<script>
+
+	var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext("2d");
+	//---variables 
+	var RAYstartX=40, RAYendX=260,RAYNumLines=6;
+	var centerY=60,RAYspaceY=10;
+	var LENSx=250, LENSr=30,LENSshiftx=7;;
+	var CORRx=220,CORRr=30;
+	var pixel100_mm1=10/2;
+	var v;
+	//---the rays of light
+	var rays=function(f,ObjectPos){
+		ctx.beginPath();
+		ctx.lineWidth=1;
+		RAYstartX=35+15000/(ObjectPos);
+		for(var nl=-RAYNumLines/2+.5;nl<RAYNumLines/2+.5;nl++){
+			ctx.moveTo(RAYstartX,centerY+nl*RAYspaceY*(1-(RAYstartX-35)/350));
+			ctx.lineTo(RAYendX,centerY+nl*RAYspaceY);
+		}
+		ctx.stroke();
+		//---rays showing the optics of the eye
+		ctx.beginPath();
+		ctx.lineWidth=1;
+		if(ObjectPos>0){
+			var v=1/(1/f-1/ObjectPos);
+		}else{v=f}
+		for(var nl=-RAYNumLines/2+.5;nl<RAYNumLines/2+.5;nl++){
+			ctx.moveTo(RAYendX,centerY+nl*RAYspaceY);
+			var sizeY=(canvas.width-RAYendX-v*pixel100_mm1)/(canvas.width-RAYendX)
+			ctx.lineTo(canvas.width,centerY-nl*RAYspaceY*sizeY*2);
+		}
+		ctx.stroke();
+		return v;
+	}
+	//---the eyeball drawing
+	var eyeball=function(rad){
+		//---eyeball
+		rad=rad*2.5;
+		ctx.lineCap="round";
+		ctx.beginPath();
+		ctx.fillStyle="#CCCCCC";
+		ctx.lineWidth=3;
+		ctx.arc(LENSx+rad,centerY,rad,0,2*Math.PI);
+		ctx.fill();
+		ctx.stroke();
+		//---retina
+		ctx.beginPath();
+		ctx.lineWidth=5;
+		ctx.strokeStyle="#0000DD";
+		ctx.arc(LENSx+rad,centerY,rad,-.5*Math.PI,.5*Math.PI);
+		ctx.stroke();
+		ctx.strokeStyle="#000000";
+		//---lens
+		ctx.beginPath();
+		ctx.lineWidth=3;
+		ctx.arc(LENSx+LENSr/2+LENSshiftx,centerY,LENSr,.69*Math.PI,-.69*Math.PI);
+		ctx.arc(LENSx-LENSr/2+LENSshiftx,centerY,LENSr,-.31*Math.PI,.31*Math.PI);
+		ctx.fillStyle="#FFFFFF";
+		ctx.fill();
+		ctx.stroke();
+		ctx.lineWidth=1;
+		ctx.textAlign = "center"; 
+		ctx.font = "12px Arial"; 
+		ctx.fillStyle="#0000DD";
+		ctx.fillText("Retina",LENSx+rad*2+5,centerY+rad)	
+		ctx.fillStyle="#000000";
+		ctx.fillText("Optics",LENSx,centerY+rad)
+	}
+	var glasses=function(CorrDiopter){
+		ctx.fillStyle="#CCCCCC";
+		ctx.textAlign = "center";
+		ctx.font = "14px Arial";
+		if(CorrDiopter>0){	//---convex
+			ctx.beginPath();
+			ctx.arc(CORRx-CORRr*.5,centerY,CORRr,(-.31)*Math.PI,(.31)*Math.PI);
+			ctx.arc(CORRx+CORRr*.5,centerY,CORRr,.69*Math.PI,-.69*Math.PI);
+			ctx.fill();
+			ctx.stroke();
+			ctx.fillStyle="black"
+			ctx.fillText("Convex",CORRx,centerY-40);
+		}
+		if(CorrDiopter<0){	//---concave
+			ctx.beginPath();
+			ctx.arc(CORRx-CORRr*1.1,centerY,CORRr,(-.31)*Math.PI,(.31)*Math.PI);
+			ctx.arc(CORRx+CORRr*1.1,centerY,CORRr,.69*Math.PI,-.69*Math.PI);
+			ctx.fill();
+			ctx.stroke();
+			ctx.fillStyle="black"
+			ctx.fillText("Concave",CORRx,centerY-40);
+		}
+		
+	}
+	//---the position of the object / image
+	var Object=function(ObjectPos,v,DOGsize,DOGinvert){
+		var DOGx=390
+		if(ObjectPos==-1){//---infinity
+			DOGx=15
+		}else if(ObjectPos>0){
+			DOGx=15+15000/(ObjectPos);
+			DOGsize=((DOGx+100)/400)
+		}
+		ctx.shadowBlur=(ObjectPos==0)*15*(Math.abs(EyeDiam.value-v)>1.1);
+		ctx.shadowColor="black";
+		ctx.beginPath();
+		ctx.lineWidth=8*DOGsize;
+		ctx.fillStyle="#000000";
+		ctx.moveTo(DOGx-5*DOGsize,centerY+DOGinvert*(20*DOGsize));
+		ctx.lineTo(DOGx-5*DOGsize,centerY-DOGinvert*(5*DOGsize));
+		ctx.lineTo(DOGx+5*DOGsize,centerY-DOGinvert*(5*DOGsize));
+		ctx.lineTo(DOGx+5*DOGsize,centerY+DOGinvert*(20*DOGsize));
+		ctx.moveTo(DOGx-5*DOGsize,centerY-DOGinvert*(5*DOGsize));
+		ctx.lineTo(DOGx+15*DOGsize,centerY+DOGinvert*(5*DOGsize));
+		ctx.lineTo(DOGx+15*DOGsize,centerY+DOGinvert*(20*DOGsize));
+		//---ears
+		ctx.moveTo(DOGx-8*DOGsize,centerY-DOGinvert*(20*DOGsize));
+		ctx.lineTo(DOGx-5*DOGsize,centerY-DOGinvert*(25*DOGsize));
+		ctx.moveTo(DOGx+8*DOGsize,centerY-DOGinvert*(20*DOGsize));
+		ctx.lineTo(DOGx+5*DOGsize,centerY-DOGinvert*(25*DOGsize));
+		ctx.stroke();
+		ctx.beginPath();
+		ctx.arc(DOGx,centerY-DOGinvert*(17*DOGsize),5*DOGsize,0,2*Math.PI);
+		ctx.fill();
+		ctx.stroke();
+		//---tail
+		ctx.beginPath();
+		ctx.lineWidth=4*DOGsize;
+		ctx.arc(DOGx,centerY-DOGinvert*(5*DOGsize),17*DOGsize,-.15*Math.PI,.15*Math.PI);
+		ctx.stroke();
+		ctx.shadowBlur=0
+		ctx.textAlign = "center"; 
+		ctx.font = "12px Arial"; 
+		ctx.fillStyle='rgb(0,0,0)';
+		if(DOGinvert==1){
+			ctx.fillText("Object",DOGx,centerY-DOGinvert*(17*DOGsize)-10)
+		}else{ctx.fillText("Image",DOGx+2,centerY-DOGinvert*(17*DOGsize)-35)}
+	}
+	
+	var DrawCanvas=function(){
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+		eyeball(Number(EyeDiam.value));				//---eye schematic
+		glasses(Number(Correction.value))
+		v=rays(1000/(Number(Diopter.value)+Number(Correction.value)),Number(ObjLoc.value));		//---light rays
+		Object(Number(ObjLoc.value),v,1.2,1);	//---object location
+		Object(0,v,.7,-1);			//---image on the retina
+
+		ImageLocationVal.innerHTML=v.toFixed(2);
+		ObjectLocationVal.innerHTML = ObjLoc.value;
+
+		EyeDiamVal.innerHTML = EyeDiam.value; 
+		EyeDiamMin.innerHTML = EyeDiam.min; 
+		EyeDiamMax.innerHTML = EyeDiam.max; 
+
+		DiopterVal.innerHTML = Diopter.value; 
+		DiopterMin.innerHTML = Diopter.min; 
+		DiopterMax.innerHTML = Diopter.max; 
+
+		CorrectionVal.innerHTML = Correction.value; 
+		CorrectionMin.innerHTML = Correction.min; 
+		CorrectionMax.innerHTML = Correction.max; 
+
+	}
+	
+
+	var ObjectLocation = document.getElementById("ObjLoc");
+	var ObjectLocationVal = document.getElementById("ObjLocValue");
+
+	var EyeDiam = document.getElementById("Diam");
+	var EyeDiamVal = document.getElementById("DiamValue");
+	var EyeDiamMin = document.getElementById("DiamMin");
+	var EyeDiamMax = document.getElementById("DiamMax");
+
+	var ImageLocationVal = document.getElementById("ImageLocValue");
+
+	var Diopter = document.getElementById("Diopter");
+	var DiopterVal = document.getElementById("DiopterValue");
+	var DiopterMin = document.getElementById("DiopterMin");
+	var DiopterMax = document.getElementById("DiopterMax");
+
+	var Correction = document.getElementById("Corr");
+	var CorrectionVal = document.getElementById("CorrValue");
+	var CorrectionMin = document.getElementById("CorrMin");
+	var CorrectionMax = document.getElementById("CorrMax");
+
+	var Normal_Young = document.getElementById("Emmetropia");
+	var Presbyopia = document.getElementById("Presbyopia");
+	var MyopiaDiopter = document.getElementById("MyopiaDiopter");
+	var MyopiaDiam = document.getElementById("MyopiaDiam");
+	var HyperopiaDiopter = document.getElementById("HyperopiaDiopter");
+	var HyperopiaDiam = document.getElementById("HyperopiaDiam");
+
+	DrawCanvas()
+
+	Diopter.oninput = function() {DrawCanvas()}
+	Correction.oninput = function() {DrawCanvas()}
+	ObjectLocation.oninput = function() {DrawCanvas()}
+	EyeDiam.oninput = function() {DrawCanvas()}
+
+	Normal_Young.onclick = function(){
+		Diopter.min=50
+		Diopter.max=65
+		EyeDiam.value=20
+		DrawCanvas()
+	}	
+	Presbyopia.onclick = function(){
+		Diopter.max=Number(Diopter.min)+1
+		EyeDiam.value=20
+		DrawCanvas()
+	}
+	MyopiaDiopter.onclick = function(){
+		Diopter.min=55
+		EyeDiam.value=20
+		DrawCanvas()
+	}
+	MyopiaDiam.onclick = function(){
+		Diopter.min=50
+		EyeDiam.value=22
+		DrawCanvas()
+	}
+	HyperopiaDiopter.onclick = function(){
+		Diopter.min=45
+		Diopter.max=55
+		Diopter.value=45;
+		EyeDiam.value=20
+		DrawCanvas()
+	}
+	HyperopiaDiam.onclick = function(){
+		Diopter.min=50
+		EyeDiam.value=16
+		DrawCanvas()
+	}
+</script>
+
+</body>
+</html>

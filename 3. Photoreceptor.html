@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p><b>The photoreceptor</b></p>
+<canvas id="RetinaCanvas" width="500" height="535" style="border:1px solid #d3d3d3"></canvas>
+<div>
+<button  type="button" id="Photon">Single photon</button>
+<button  type="button" id="Flash">Light flash</button>
+<button  type="button" id="Flash5">5  flashes</button>
+<button  type="button" id="Dark">Light Off</button>
+<button  type="button" id="Contrast">Contrast steps</button>
+<button  type="button" id="DarkAdapt">Dark adapt</button>
+</div>
+	<p style="position: relative;left: 0px;top:-10px">Light ––> Rhodopsin:<sub> weak
+	<input type="range" min="1" max="200" value="12" id="RhGain" style="width: 80px;" >strong </sub>
+	<p style="position: relative;left: 0px;top:-10px" id="MetaIIGainTxT">Meta II ––> Transducin (––>PDE):<sub> weak
+	<input type="range" min="1" max="40" value="4" id="MetaIIGain" style="width: 80px;" >strong </sub>
+	<p style="position: relative;left: 0px;top:-10px" id="PDEGainTxT">PDE ––> cGMP (––>NaV):<sub> weak
+	<input type="range" min="1" max="40" value="4" id="PDEGain" style="width: 80px;" >strong </sub>
+	<p style="position: relative;left: 0px;top:-10px">NaV ––> Vm:<sub> weak
+	<input type="range" min="1" max="40" value="20" id="NaGain" style="width: 80px;" >strong </sub>
+	<p>Visual transduction: <input type="radio" id="Pathway0" name="Pathway" value="metabolic">direct
+	<input type="radio" id="Pathway1" name="Pathway" value="metabolic" checked>metabolic
+
+	
+<div>
+	<a href="#LightResponse">Light response</a>
+	<a href="#VisualTransduction">Visual transduction</a>
+	<a href="#DirectVisualTransduction">Direct transduction</a>
+	<a href="#RodCone">Rod / Cone</a>
+	<p ><b>Instructions:</b></p>
+	<p><li><a name="LightResponse"><b>Light response:</b><a> Photoreceptors respond to light by changing their glutamate release levels. Click on the <b>Light flash</b> button once. You should be able to observe a brief light increase and a concurrent change in glutamate release from the top and bottom plots on the right.
+	The glutamate signal changes only so slightly in response to light. Below the buttons you will find 4 gain controllers (see below). Try adjusting their values to obtain a pronounced response. What is the direction of the response?
+	<p><li>Next we will familiarize ourselves with the visual conditions in the tutorial. Set the light level on top of the photoreceptor to an intermediate value.
+	Click on the buttons and observe the ensuing changes in light. 
+	<p></p>
+	<p><li><a name="VisualTransduction"><b>Visual transduction:</b><a>Light transduces the visual pigment via the following enzyme cascade: photons – rhodopsin – activated rhodopsin (metarhodopsin II) – a GTP binding protein (transducin) – an enzyme hydrolyzing cGMP (cGMP-phosphodiesterase) – closes a membrane bound cGMP-gated cation channel.
+	Why does light activate this complex metabolic pathway instead of opsins acting directly on the cGMP-gated channels?
+	<p><li><a name="DirectVisualTransduction"></a>Simulate direct Opsin-cGMP activation by selecting <b>direct visual transduction </b>. Can you see light responses? 
+	Increase the number of Rhodopsin molecules excited by light. Is there a light response? What happens with more pulses?</p>
+	<p><li><a name="RodCone"></a>In vertebrates, the visual scene is samples with two types of photoreceptors. 
+	<b>Rods</b> are extremely sensitive, and can be triggered by a single photon. <b>Cones</b> require significantly brighter light in order to produce a signal.
+	<br>What is the advantage of  having two different photoreceptor types? 
+	<br>To find out we will start with simulating a Rod response in the dark. 
+	Set the light level to darkness and change the gains to get a good change in glutamate release for a light flash (remember to select metabolic visual transduction).
+	Now increase the ambient light level. What happens? What gain changes are required to maintain a good response in the light?
+	Can the photoreceptor respond to single photons now?
+	
+	<p><b>Notes:</b></p>
+	The photoreceptor uses a visual pigment embedded in the bi-lipid membranous discs that make up the outer segment to detect light. 
+	
+	The photoreceptor consists of 
+	1) an outer segment, filled with stacks of membranes (like a stack of poker chips) containing the visual pigment molecules such as rhodopsins, 
+	2) an inner segment containing mitochondria, ribosomes and membranes where opsin molecules are assembled and passed to be part of the outer segment discs, 
+	3) a cell body containing the nucleus of the photoreceptor cell and 
+	4) a synaptic terminal where neurotransmission to second order neurons occurs.
+	
+	
+	<p><b>Rhodopsin</b> consists of two components, a protein (<b>opsin</b>) and a covalently-bound cofactor called <b>retinal</b>. Opsin is a light-sensitive G protein coupled receptor. 
+	Thousands of opsin molecules are found in each outer segment disc of the host cell. 
+	Retinal is produced in the retina from vitamin A, from dietary beta-carotene. 
+	Isomerization of 11-cis-retinal into all-trans-retinal by light sets off a series of conformational changes ('bleaching') in the opsin, eventually leading it to a form called metarhodopsin II (<b>Meta II</b>), which activates an associated G protein, <b>transducin</b>.
+	This is the first amplification step – each photoactivated rhodopsin triggers activation of about 100 transducins.
+	Transducin activates <b>cGMP phosphodiesterase</b>,	PDE then catalyzes the hydrolysis of cGMP to 5' GMP. 
+	This is the second amplification step, where a single PDE hydrolyses about 1000 cGMP molecules.</p>
+	<p>Rhodopsin pigment must be regenerated for further phototransduction to occur. This means replacing all-trans-retinal with 11-cis-retinal and the decay of Meta II to Meta III. 
+	In the rod outer segment, Meta III decays into separate all-trans-retinal and opsin.</p>
+	<p>Similar to other cells, K+ channels maintain the resting membrane potential of the cell. The outward potassium current tends to hyperpolarize the photoreceptor at around -60 mV.
+	cGMP molecules gate activation of an inward sodium current. This so-called 'dark current' depolarizes the cell to about -30 mV. 
+	A high density of Na+-K+ pumps enables the photoreceptor to maintain a steady intracellular concentration of Na+ and K+.
+	<p><b>In the dark</b> cGMP levels are high and keep cGMP-gated sodium channels open allowing a steady inward current, called the dark current. 
+	This dark current keeps the cell depolarized around -30 mV, leading to glutamate release. 
+	<p><b>Light</b> leads to reduced cGMP levels and closure of cGMP-gated sodium channels. Stopping the influx of Na+ ions effectively switches off the dark current. Reducing this dark current causes the photoreceptor to hyperpolarise, which reduces glutamate release.
+	</p><a href="https://en.wikipedia.org/wiki/Visual_phototransduction">https://en.wikipedia.org/wiki/Visual_phototransduction</a>
+	</p><a href="https://webvision.med.utah.edu/book/part-ii-anatomy-and-physiology-of-the-retina/photoreceptors/">https://webvision.med.utah.edu/book/part-ii-anatomy-and-physiology-of-the-retina/photoreceptors/</a>
+	
+	</p><i> Composed by Alon Poleg-Polsky, 2019</p>alon.poleg-polsky@ucdenver.edu</i>
+
+	</div>
+<script>
+	var canvas = document.getElementById("RetinaCanvas");
+	var ctx = canvas.getContext("2d");
+	var Phtop=60,Phleft=40,PhOSH=200,Phwidth=130,PhISH=80,PhNR=40;
+	var NumDisks=6,smallDiskDiff=28;
+	var DiskTop=65,DiskR=10,DiskH=15,DiskW=80;
+	var PhSomaTop=Phtop+PhOSH+PhISH+DiskR+20;//---right side soma
+	var PhAxonTop=PhSomaTop+PhNR*2+20;//---axon
+	var cGMP=1,NaVtop=50,NaVH=20,NaVW=20,KVtop=Phtop+250;
+	var NaAnimationCount=03,TAnimationCount=0,PDEAnimationCount=0;
+	var LightLevel=0,SaveLight=0,DirectPathway=0;
+	var TimerID;
+	var VecSize=200;							//---number of points to display
+	var VecLightLevel=new Array(VecSize);		//---light levels
+	var VecRhodopsinLevel=new Array(VecSize);	//---Rhodopsin levels
+	var VecMetaIILevel=new Array(VecSize);		//---Metarhodopsin II levels
+	var VecTransducinLevel=new Array(VecSize);	//---transducin levels
+	var VecPDELevel=new Array(VecSize);			//---PDE levels
+	var VeccGMPLevel=new Array(VecSize);		//---cGMP/gNAV levels
+	var VecVmLevel=new Array(VecSize);			//---Vm
+	var VecGlu=new Array(10);					//---glutamate vesicles
+	var RhodopsinGain=0.005;
+	var RhodopsinReplenishment=0.001;
+	var MetaIItau=0.2;
+	var MetaIIGain=10;
+	var Transducintau=0.2;
+	var TransducinGain=10;
+	var PDEtau=0.8;
+	var PDEGain=0.1;
+	var cGMPReplenishment=0.01;
+	var GIN=1,gNa=5;
+	var MetaII=0;
+	
+	function InitVec(){//---inital conditions
+		for(var i=0;i<VecSize;i++){
+			VecLightLevel[i]=LightLevel;
+			VecRhodopsinLevel[i]=1;
+			VecMetaIILevel[i]=0;
+			VecTransducinLevel[i]=0;
+			VecPDELevel[i]=0;
+			VeccGMPLevel[i]=1;
+			VecVmLevel[i]=gNa/(gNa+GIN)*40-40;
+		}
+		for(var i=0;i<10;i++){VecGlu[i]=Math.random()*40}
+	}
+	InitVec();
+	//---computations
+	function ComputeRhodopsin(Rh,LightLevel){
+		var oldRh=Rh;
+		Rh-=(LightLevel)*RhodopsinGain
+		Rh+=RhodopsinReplenishment;
+		if(Rh<0){Rh=0}
+		if(Rh>1){Rh=1}
+		MetaII+=oldRh-Rh;
+		return Rh; 
+	}	
+	//---schematic dark and light symbols
+	function Light_On_Off(posX,posY,posDiff,amp){
+		ctx.beginPath();
+		ctx.fillStyle='rgb(0,0,0)'
+		ctx.strokeStyle='rgb(0,0,0)';
+		ctx.lineWidth=3;
+		ctx.arc(posX,posY,3*amp,0,2*Math.PI);
+		ctx.stroke();
+		ctx.fill();
+		ctx.closePath();
+		ctx.beginPath();
+		ctx.fillStyle='rgb(255,255,255)'
+		ctx.arc(posX+posDiff,posY,2*amp,0,2*Math.PI);
+		ctx.stroke();
+		ctx.fill();
+		ctx.closePath();
+		for( var i=0;i<8;i++){
+			ctx.beginPath();
+			ctx.lineWidth=1;
+			ctx.moveTo(posX+posDiff+4*Math.sin(Math.PI/4*i)*amp,posY+4*Math.cos(Math.PI/4*i)*amp)
+			ctx.lineTo(posX+posDiff+6*Math.sin(Math.PI/4*i)*amp,posY+6*Math.cos(Math.PI/4*i)*amp)
+			ctx.stroke();
+			ctx.closePath();
+		}
+	}	
+	function Background(LightLevel){
+		var grd=ctx.createLinearGradient(Phleft,10,Phleft+Phwidth,10);
+		grd.addColorStop(0,'rgb(64,64,64)');
+		grd.addColorStop(1,'rgb(255,255,255)');
+		ctx.beginPath();
+		ctx.fillStyle=grd;
+		ctx.rect(Phleft-20,5,Phleft+Phwidth,30);//---dark-light
+		ctx.stroke();
+		ctx.fill();
+		//---stimulus location
+			ctx.beginPath();
+			ctx.lineWidth=2;
+			ctx.strokeStyle='rgb(0,0,0)';
+			ctx.fillStyle='rgb(255,255,255)';//'rgb('+stimuli[ph]*255+','+stimuli[ph]*255+','+stimuli[ph]*255+')';
+			ctx.moveTo(Phleft+LightLevel*(Phwidth),35-3)
+			ctx.lineTo(Phleft+LightLevel*(Phwidth)-5,40-3)
+			ctx.lineTo(Phleft+LightLevel*(Phwidth)-5,45-3)
+			ctx.lineTo(Phleft+LightLevel*(Phwidth)+5,45-3)
+			ctx.lineTo(Phleft+LightLevel*(Phwidth)+5,40-3)
+			ctx.lineTo(Phleft+LightLevel*(Phwidth),35-3)
+			ctx.fill();
+			ctx.stroke();
+			
+			ctx.closePath();		
+		ctx.closePath();	
+		Light_On_Off(Phleft,20,Phwidth,2)	
+
+	}
+	function GluVes(locx,locy){	//---draw glutamate at the location
+		ctx.strokeStyle='rgb(64,64,64)';
+		ctx.fillStyle='rgb(128,128,128)';
+		ctx.lineWidth=1;
+		ctx.beginPath();
+		ctx.moveTo(locx-4,locy);
+		ctx.lineTo(locx,locy-4);
+		ctx.lineTo(locx+4,locy);
+		ctx.lineTo(locx,locy+4);
+		ctx.lineTo(locx-4,locy);
+		ctx.stroke();
+		ctx.fill();
+		ctx.closePath();
+	}
+	function Photoreceptor(){
+		//---shape
+		ctx.strokeStyle='rgb(64,64,64)';
+		ctx.fillStyle='rgb(128,128,128)';
+		ctx.lineWidth=4;
+		{//---outer/inner segments,soma,axon
+		ctx.beginPath();
+		ctx.moveTo(Phleft,Phtop+PhOSH+PhISH);
+		ctx.lineTo(Phleft,Phtop);
+		ctx.arcTo(Phleft,Phtop-DiskR,Phleft+DiskR,Phtop-DiskR,DiskR);//---top left
+		ctx.lineTo(Phleft+Phwidth-DiskR,Phtop-DiskR);
+		ctx.arcTo(Phleft+Phwidth,Phtop-DiskR,Phleft+Phwidth,Phtop,DiskR);//---top right
+		ctx.lineTo(Phleft+Phwidth,Phtop+PhOSH-DiskR);
+		ctx.arcTo(Phleft+Phwidth,Phtop+PhOSH,Phleft+Phwidth-DiskR,Phtop+PhOSH,DiskR);//---bottom right
+		ctx.lineTo(Phleft+50,Phtop+PhOSH);
+		ctx.lineTo(Phleft+50,Phtop+PhOSH+DiskR);//---cilium
+		ctx.lineTo(Phleft+Phwidth-DiskR,Phtop+PhOSH+DiskR);
+		ctx.arcTo(Phleft+Phwidth,Phtop+PhOSH+DiskR,Phleft+Phwidth,Phtop+PhOSH+DiskR*2,DiskR);//---top right, inner segment
+		ctx.lineTo(Phleft+Phwidth,Phtop+PhOSH+PhISH);
+		ctx.arcTo(Phleft+Phwidth,Phtop+PhOSH+PhISH+DiskR,Phleft+Phwidth-DiskR,Phtop+PhOSH+PhISH+DiskR,DiskR);//---bottom right, inner segment
+		ctx.lineTo(Phleft+Phwidth-PhNR,Phtop+PhOSH+PhISH+DiskR);
+		ctx.lineTo(Phleft+Phwidth-PhNR,PhSomaTop);
+		ctx.arcTo(Phleft+Phwidth,PhSomaTop,Phleft+Phwidth,PhSomaTop+PhNR,PhNR);//--- right soma
+		ctx.arcTo(Phleft+Phwidth,PhSomaTop+PhNR*2,Phleft+Phwidth-PhNR,PhSomaTop+PhNR*2,PhNR);//--- right soma
+		ctx.lineTo(Phleft+Phwidth-PhNR,PhAxonTop);
+		ctx.lineTo(Phleft+Phwidth,PhAxonTop);
+		ctx.lineTo(Phleft+Phwidth,PhAxonTop+30);
+		ctx.lineTo(Phleft,PhAxonTop+30);
+		ctx.lineTo(Phleft,PhAxonTop);
+		ctx.lineTo(Phleft+PhNR,PhAxonTop);
+		ctx.lineTo(Phleft+PhNR,PhSomaTop+PhNR*2);
+		ctx.arcTo(Phleft,PhSomaTop+PhNR*2,Phleft,PhSomaTop+PhNR,PhNR);//--- left soma
+		ctx.arcTo(Phleft,PhSomaTop,Phleft+PhNR,PhSomaTop,PhNR);//--- left soma
+		ctx.lineTo(Phleft+PhNR,Phtop+PhOSH+PhISH+DiskR);
+		ctx.lineTo(Phleft+DiskR,Phtop+PhOSH+PhISH+DiskR);
+		ctx.arcTo(Phleft,Phtop+PhOSH+PhISH+DiskR,Phleft,Phtop+PhOSH+PhISH,DiskR);//--- left bottom
+		ctx.fill();
+		ctx.stroke();
+		ctx.closePath();}
+		{//---nucleus
+		ctx.beginPath();
+		ctx.arc(Phleft+Phwidth/2, PhSomaTop+PhNR, 30, 0, 2 * Math.PI);
+		ctx.stroke();}
+		{//---disks
+		ctx.strokeStyle='rgb(180,180,180)';
+		for(var disk=0;disk<NumDisks;disk++){
+			ctx.lineWidth=8;
+			ctx.lineCap = "round";
+			ctx.beginPath();
+			ctx.moveTo(Phleft+DiskR+15,Phtop+12+disk*smallDiskDiff);
+			ctx.lineTo(Phleft+DiskR-15+DiskW,Phtop+12+disk*smallDiskDiff);
+			//ctx.fillRect(Phleft+10,Phtop+10+disk*Diskheight*2,Phwidth/2,Diskheight);
+			ctx.fill();
+			ctx.stroke();
+			ctx.closePath();
+		}
+		//---large disk
+		ctx.strokeStyle='rgb(64,64,64)';
+		ctx.fillStyle='rgb(222,222,222)';
+		ctx.lineWidth=8;
+		ctx.beginPath();
+		ctx.moveTo(Phleft+15+DiskR,Phtop+DiskTop);
+		ctx.arcTo(Phleft+15,Phtop+DiskTop,Phleft+15,Phtop+DiskTop+DiskR,DiskR);
+		ctx.lineTo(Phleft+15,Phtop+DiskTop+DiskR+DiskH);
+		ctx.arcTo(Phleft+15,Phtop+DiskTop+DiskR*2+DiskH,Phleft+15+DiskR,Phtop+DiskTop+DiskR*2+DiskH,DiskR);
+		ctx.lineTo(Phleft+15+DiskW-DiskR*2,Phtop+DiskTop+DiskR*2+DiskH);
+		ctx.arcTo(Phleft+15+DiskW-DiskR,Phtop+DiskTop+DiskR*2+DiskH,Phleft+15+DiskW-DiskR,Phtop+DiskTop+DiskR+DiskH,DiskR);
+		ctx.lineTo(Phleft+15+DiskW-DiskR,Phtop+DiskTop+DiskR);
+		ctx.arcTo(Phleft+15+DiskW-DiskR,Phtop+DiskTop,Phleft+15+DiskW-DiskR*2,Phtop+DiskTop,DiskR);
+		ctx.lineTo(Phleft+15+DiskR,Phtop+DiskTop);
+		ctx.fill();
+		ctx.stroke();
+		ctx.closePath();}
+		{//---rhodopsin/transducin/PDE
+		
+		ctx.strokeStyle='rgb(170,0,200)';//---violet,rhodopsin
+		ctx.lineWidth=15;
+		ctx.lineCap = "round";
+		ctx.beginPath();
+		ctx.moveTo(Phleft+DiskR+20,Phtop+DiskTop+10);
+		ctx.lineTo(Phleft+DiskR+20,Phtop+DiskTop-5);
+		ctx.stroke();
+		ctx.closePath();
+
+		ctx.strokeStyle='rgb(255,0,0)';//---blue/red,PDE
+		ctx.lineWidth=15;
+		ctx.beginPath();
+
+		ctx.stroke();
+		ctx.closePath();		
+		ctx.strokeStyle='rgb(64,64,64)';}
+		{//---K+ channel/transporter
+		ctx.beginPath();
+		ctx.fillStyle='rgb(222,222,222)';
+		ctx.lineWidth=2;
+		ctx.arc(Phleft+Phwidth,KVtop,NaVW/2,0, 2 * Math.PI);
+		ctx.rect(Phleft-NaVW/2,KVtop-NaVH-5,NaVW,NaVH);//---top part
+		ctx.rect(Phleft-NaVW/2,KVtop+5,NaVW,NaVH);//---bottom part
+		ctx.fill();
+		ctx.stroke();
+		ctx.closePath();}
+		{//---transporter text
+		ctx.beginPath();
+		ctx.lineWidth=2;
+		ctx.moveTo(Phleft+Phwidth+NaVW,KVtop-NaVW/2);
+		ctx.lineTo(Phleft+Phwidth-NaVW,KVtop-NaVW/2);
+		ctx.lineTo(Phleft+Phwidth-NaVW+5,KVtop-5-NaVW/2);
+		ctx.moveTo(Phleft+Phwidth-NaVW,KVtop-NaVW/2);
+		ctx.lineTo(Phleft+Phwidth-NaVW+5,KVtop+5-NaVW/2);
+		ctx.moveTo(Phleft+Phwidth-NaVW,KVtop+NaVW/2);
+		ctx.lineTo(Phleft+Phwidth+NaVW,KVtop+NaVW/2);
+		ctx.lineTo(Phleft+Phwidth+NaVW-5,KVtop-5+NaVW/2);
+		ctx.moveTo(Phleft+Phwidth+NaVW,KVtop+NaVW/2);
+		ctx.lineTo(Phleft+Phwidth+NaVW-5,KVtop+5+NaVW/2);
+		ctx.textAlign = "end"; 
+		ctx.font = "12px Arial"; 
+		ctx.fillStyle='rgb(0,0,0)';
+		ctx.fillText("K",Phleft-NaVW-5+Phwidth,KVtop-NaVW/2);
+		ctx.fillText("+",Phleft-NaVW+2+Phwidth,KVtop-3-NaVW/2);
+		ctx.textAlign = "start"; 
+		ctx.fillStyle='rgb(0,0,0)';
+		ctx.fillText(" Na",Phleft+Phwidth+NaVW,KVtop+NaVW/2);
+		ctx.fillText("+",Phleft+Phwidth+NaVW+18,KVtop+NaVW/2-3);
+		ctx.stroke();
+		ctx.closePath();}
+		{//---Kv text
+		ctx.beginPath();
+		ctx.lineWidth=2;
+		ctx.moveTo(Phleft+NaVW,KVtop);
+		ctx.lineTo(Phleft-NaVW,KVtop);
+		ctx.lineTo(Phleft-NaVW+5,KVtop-5);
+		ctx.moveTo(Phleft-NaVW,KVtop);
+		ctx.lineTo(Phleft-NaVW+5,KVtop+5);
+		ctx.textAlign = "end"; 
+		ctx.font = "12px Arial"; 
+		ctx.fillStyle='rgb(0,0,0)';
+		ctx.fillText("K",Phleft-NaVW-5,KVtop);
+		ctx.fillText("+",Phleft-NaVW+2,KVtop-3);
+		ctx.textAlign = "center"; 
+		ctx.fillText("Kv",Phleft,KVtop-NaVH/2);
+		ctx.stroke();
+		ctx.closePath();}
+		{//---Na+ channel
+		ctx.beginPath();
+		ctx.fillStyle='rgb(222,222,222)';
+		//ctx.rect(Phleft+Phwidth-NaVW/2,Phtop+DiskTop-NaVH,NaVW,NaVH);//---top part
+		//ctx.rect(Phleft+Phwidth-NaVW/2,Phtop+DiskTop+cGMP/10+2,NaVW,NaVH);//---bottom part
+		ctx.rect(Phleft+Phwidth-NaVW/2,Phtop+DiskTop-NaVH-cGMP*10+9,NaVW,NaVH);//---top part
+		ctx.rect(Phleft+Phwidth-NaVW/2,Phtop+DiskTop+11,NaVW,NaVH);//---bottom part
+		//ctx.moveTo(Phleft+Phwidth-NaVW/2,Phtop+DiskTop+cGMP/10+2+NaVH/2)
+		ctx.moveTo(Phleft+Phwidth-NaVW/2,Phtop+DiskTop-NaVH/2-cGMP*10+9)
+		ctx.lineTo(Phleft+Phwidth-NaVW/2-22,Phtop+DiskTop-NaVH+(1-cGMP)*(NaVH*2+10)+1)
+		ctx.fill();
+		ctx.stroke();
+		ctx.closePath();}
+		{//---Na+ cGMP arm 
+		ctx.beginPath();
+		ctx.fillStyle=ctx.strokeStyle;
+		ctx.moveTo(Phleft+Phwidth-NaVW/2-5,Phtop+DiskTop+4+NaVH/2);
+		//ctx.moveTo(Phleft+Phwidth-NaVW/2-5,Phtop+DiskTop+4+NaVH/2);
+		//ctx.arc(Phleft+Phwidth-NaVW/2-3,Phtop+DiskTop+4+NaVH/2,2,0, 2 * Math.PI);
+		ctx.fill();
+		ctx.stroke();
+		ctx.closePath();}
+		{//---cGMP meter 
+		ctx.beginPath();
+		ctx.fillStyle="Red";
+		ctx.rect(Phleft+Phwidth-NaVW/2-28,Phtop+DiskTop-NaVH+(1-cGMP)*(NaVH*2+10),10,(cGMP)*(NaVH*2+10));//---cGMP
+		ctx.strokeRect(Phleft+Phwidth-NaVW/2-28,Phtop+DiskTop-NaVH,10,NaVH*2+10);//---cGMP
+		ctx.fill();
+		ctx.stroke();
+		ctx.closePath();}
+		ctx.setLineDash([]);
+		{//---labels
+		ctx.beginPath();
+		ctx.lineWidth=1;
+		ctx.strokeStyle='rgb(0,0,0)';
+		ctx.fillStyle='rgb(222,222,222)';
+		ctx.rect(Phleft+Phwidth+NaVW+60,Phtop-10,248,360+80);
+		ctx.stroke();
+		ctx.fill();
+		ctx.closePath();
+		}
+		var PlotX=Phleft+Phwidth+NaVW+100,PlotY=Phtop+5,PlotDY=40;
+		{//---light levels
+		ctx.beginPath();
+		ctx.strokeStyle='rgb(0,0,0)';
+		ctx.fillStyle='rgb(255,255,255)';
+		ctx.rect(PlotX,PlotY,VecSize,PlotDY);
+		ctx.stroke();
+		ctx.fill();
+		ctx.closePath();
+		ctx.beginPath();
+		VecLightLevel[VecSize-1]=LightLevel;
+		ctx.moveTo(PlotX+1,PlotY+PlotDY*(1-VecLightLevel[0]));
+		for(var i=0;i<VecSize-1;i++){
+			VecLightLevel[i]=VecLightLevel[i+1];
+			ctx.lineTo(PlotX+i+1,PlotY+PlotDY*(1-VecLightLevel[i]));
+		}			
+		ctx.stroke();
+		ctx.closePath();		
+		}
+		{//---rhodopsin
+		ctx.strokeStyle='rgb(170,0,200)';//---violet,rhodopsin
+		ctx.lineWidth=15;
+		ctx.lineCap = "round";
+		ctx.beginPath();
+		ctx.moveTo(Phleft+Phwidth+NaVW+75,PlotY+PlotDY*1.9-7.5);
+		ctx.lineTo(Phleft+Phwidth+NaVW+75,PlotY+PlotDY*1.9+7.5);
+		ctx.stroke();
+		ctx.closePath();
+		ctx.beginPath();
+		ctx.lineWidth=1;
+		ctx.strokeStyle='rgb(0,0,0)';
+		ctx.fillStyle='rgb(255,255,255)';
+		ctx.rect(PlotX,PlotY+PlotDY*1.4,VecSize,PlotDY);
+		ctx.stroke();
+		ctx.fill();
+		ctx.closePath();
+		ctx.beginPath();
+		var OldRh=VecRhodopsinLevel[VecSize-1];
+		VecRhodopsinLevel[VecSize-1]=ComputeRhodopsin(VecRhodopsinLevel[VecSize-1],VecLightLevel[VecSize-1]);
+		ctx.moveTo(PlotX+1,PlotY+PlotDY*(1.4+1-VecRhodopsinLevel[0]));
+		for(var i=0;i<VecSize-1;i++){
+			VecRhodopsinLevel[i]=VecRhodopsinLevel[i+1];
+			ctx.lineTo(PlotX+i+1,PlotY+PlotDY*(1.4+1-VecRhodopsinLevel[i]));
+		}			
+		ctx.stroke();
+		ctx.closePath();
+		ctx.beginPath();
+		ctx.strokeStyle='rgb(170,0,200)';
+		VecMetaIILevel[VecSize-1]+=OldRh-VecRhodopsinLevel[VecSize-1];
+		VecMetaIILevel[VecSize-1]*=MetaIItau;
+		ctx.moveTo(PlotX+1,PlotY+PlotDY*(1.4+1-VecMetaIILevel[0]));
+		for(var i=0;i<VecSize-1;i++){
+			VecMetaIILevel[i]=VecMetaIILevel[i+1];
+			ctx.lineTo(PlotX+i+1,PlotY+PlotDY*(1.4+1-VecMetaIILevel[i]));
+		}			
+		ctx.stroke();
+		ctx.closePath();}
+		{//---transducin
+		ctx.beginPath();
+		ctx.lineWidth=2;
+		ctx.fillStyle='rgb(222,222,222)';
+		ctx.strokeStyle='rgb(0,100,222)';
+		ctx.arc(Phleft+Phwidth+NaVW+75,Phtop+PlotDY*3.4,5,0, 2 * Math.PI);
+		ctx.fill();
+		ctx.stroke();
+		ctx.closePath();
+		ctx.beginPath();
+		ctx.lineWidth=1;
+		ctx.strokeStyle='rgb(0,0,0)';
+		ctx.fillStyle='rgb(255,255,255)';
+		ctx.rect(PlotX,PlotY+PlotDY*2.8,VecSize,PlotDY);
+		ctx.stroke();
+		ctx.fill();
+		ctx.closePath();
+		if(DirectPathway==0){//---light activates opsin that changes cGMP level directly
+			VecTransducinLevel[VecSize-1]+=VecMetaIILevel[VecSize-1]*MetaIIGain*(1-VecTransducinLevel[VecSize-1]);
+			VecTransducinLevel[VecSize-1]*=Transducintau;
+			if(VecTransducinLevel[VecSize-1]>1){VecTransducinLevel[VecSize-1]=1}
+			if(VecTransducinLevel[VecSize-1]<0){VecTransducinLevel[VecSize-1]=0}
+			ctx.beginPath();
+			ctx.moveTo(PlotX+1,PlotY+PlotDY*(2.8+1-VecTransducinLevel[0]));
+			for(var i=0;i<VecSize-1;i++){
+				VecTransducinLevel[i]=VecTransducinLevel[i+1];
+				ctx.lineTo(PlotX+i+1,PlotY+PlotDY*(2.8+1-VecTransducinLevel[i]));
+			}			
+			ctx.stroke();
+			ctx.closePath();
+		}}
+		{//---PDE
+		ctx.strokeStyle='rgb(255,255,0)';
+		ctx.fillStyle='rgb(255,255,0)';
+		ctx.lineWidth=1;
+		ctx.beginPath();
+		ctx.arc(Phleft+Phwidth+NaVW+75,Phtop+PlotDY*4.6,10,0, 2 * Math.PI);
+		ctx.fill();
+		ctx.stroke();
+		ctx.closePath();	
+		ctx.beginPath();
+		ctx.lineWidth=1;
+		ctx.strokeStyle='rgb(0,0,0)';
+		ctx.fillStyle='rgb(255,255,255)';
+		ctx.rect(PlotX,PlotY+PlotDY*4.3,VecSize,PlotDY);
+		ctx.stroke();
+		ctx.fill();
+		ctx.closePath();
+		if(DirectPathway==0){//---light activates opsin that changes cGMP level directly	
+			VecPDELevel[VecSize-1]+=VecTransducinLevel[VecSize-1]*TransducinGain*(1-VecPDELevel[VecSize-1]);
+			VecPDELevel[VecSize-1]*=PDEtau;
+			if(VecPDELevel[VecSize-1]>1){VecPDELevel[VecSize-1]=1}
+			if(VecPDELevel[VecSize-1]<0){VecPDELevel[VecSize-1]=0}
+			ctx.beginPath();
+			ctx.moveTo(PlotX+1,PlotY+PlotDY*(4.3+1-VecPDELevel[0]));
+			for(var i=0;i<VecSize-1;i++){
+				VecPDELevel[i]=VecPDELevel[i+1];
+				ctx.lineTo(PlotX+i+1,PlotY+PlotDY*(4.3+1-VecPDELevel[i]));
+			}			
+			ctx.stroke();
+			ctx.closePath();
+		}}
+		{//---cGMP
+		ctx.strokeStyle='rgb(0,0,0)';
+		ctx.fillStyle='rgb(255,0,0)';
+		ctx.lineWidth=1;
+		ctx.beginPath();
+		ctx.rect(Phleft+Phwidth+NaVW+70,PlotY+PlotDY*(6.2),10,10);
+		ctx.fill();
+		ctx.stroke();
+		ctx.closePath();
+		ctx.beginPath();
+		ctx.lineWidth=1;
+		ctx.strokeStyle='rgb(0,0,0)';
+		ctx.fillStyle='rgb(255,255,255)';
+		ctx.rect(PlotX,PlotY+PlotDY*5.8,VecSize,PlotDY);
+		ctx.stroke();
+		ctx.fill();
+		ctx.closePath();
+		if(DirectPathway){//---light activates opsin that changes cGMP level directly
+			VeccGMPLevel[VecSize-1]-=VecMetaIILevel[VecSize-1]*10*(VeccGMPLevel[VecSize-1])	
+		}else{VeccGMPLevel[VecSize-1]-=VecPDELevel[VecSize-1]*PDEGain*(VeccGMPLevel[VecSize-1])};
+		VeccGMPLevel[VecSize-1]+=cGMPReplenishment;
+		if(VeccGMPLevel[VecSize-1]>1){VeccGMPLevel[VecSize-1]=1}
+		if(VeccGMPLevel[VecSize-1]<0){VeccGMPLevel[VecSize-1]=0}
+		cGMP=VeccGMPLevel[VecSize-1];
+		ctx.beginPath();
+		ctx.moveTo(PlotX+1,PlotY+PlotDY*(5.8+1-VeccGMPLevel[0]));
+		for(var i=0;i<VecSize-1;i++){
+			VeccGMPLevel[i]=VeccGMPLevel[i+1];
+			ctx.lineTo(PlotX+i+1,PlotY+PlotDY*(5.8+1-VeccGMPLevel[i]));
+		}			
+		ctx.stroke();
+		ctx.closePath();}
+		{//---Vm
+		ctx.beginPath();
+		ctx.lineWidth=1;
+		ctx.strokeStyle='rgb(0,0,0)';
+		ctx.fillStyle='rgb(255,255,255)';
+		ctx.rect(PlotX,PlotY+PlotDY*7.3,VecSize,PlotDY*3);
+		ctx.stroke();
+		ctx.fill();
+		ctx.closePath();
+		VecVmLevel[VecSize-1]=gNa*(cGMP)/(gNa*(cGMP)+GIN)*40-40;
+		if(VecVmLevel[VecSize-1]>0){VecVmLevel[VecSize-1]=0}
+		if(VecVmLevel[VecSize-1]<-40){VecVmLevel[VecSize-1]=-40}
+		ctx.beginPath();
+		ctx.moveTo(PlotX+1,PlotY+PlotDY*(7.3-3*VecVmLevel[0]/40));
+		for(var i=0;i<VecSize-1;i++){
+			VecVmLevel[i]=VecVmLevel[i+1];
+			ctx.lineTo(PlotX+i+1,PlotY+PlotDY*(7.3-3*VecVmLevel[i]/40));
+		}			
+		ctx.stroke();
+		ctx.closePath();}		
+		{//---text/labels
+		ctx.textAlign = "start"; 
+		ctx.font = "12px Arial"; 
+		ctx.fillStyle='rgb(0,0,0)';
+		ctx.fillText(" Light",Phleft+Phwidth+NaVW+85,PlotY+PlotDY*0-5);
+		ctx.fillText(" Rhodopsin",Phleft+Phwidth+NaVW+85,PlotY+PlotDY*1.3);
+		ctx.fillStyle='rgb(170,0,200)';
+		ctx.fillText(" Meta II",Phleft+Phwidth+NaVW+85+80,PlotY+PlotDY*1.3);
+		ctx.fillStyle='rgb(0,0,0)';
+		ctx.fillText(" Transducin",Phleft+Phwidth+NaVW+85,Phtop+PlotDY*2.8);
+		ctx.fillText(" cGMP-phosphodiesterase",Phleft+Phwidth+NaVW+85,Phtop+PlotDY*4.3);
+		ctx.fillText(" cGMP / NaV",Phleft+Phwidth+NaVW+85,Phtop+PlotDY*5.8);
+		ctx.fillText(" Vm / Glutamate",Phleft+Phwidth+NaVW+85,Phtop+PlotDY*7.3);
+		ctx.textAlign = "end"; 
+		ctx.fillText("-20mV",Phleft+Phwidth+NaVW+98,Phtop+PlotDY*7.3+12);
+		ctx.fillText("-60mV",Phleft+Phwidth+NaVW+98,Phtop+PlotDY*10.3+6);
+		}
+		NaAnimationCount++;		
+		if(NaAnimationCount>6){NaAnimationCount=03}
+		if(VecTransducinLevel[i]<0.001){//---no light input
+			TAnimationCount=0;
+		}else{TAnimationCount++}
+		if(TAnimationCount>10){TAnimationCount=-5}		
+		if(VecPDELevel[i]<0.01){//---no light input
+			PDEAnimationCount=0;
+		}else{PDEAnimationCount++}
+		if(PDEAnimationCount>5){PDEAnimationCount=1}		
+		if(DirectPathway==0){//---light activates opsin that changes cGMP level directly //---transducing animation
+			ctx.strokeStyle='rgb(128,128,128)';
+			ctx.fillStyle='rgb(128,128,128)';
+			ctx.lineWidth=12;
+			ctx.lineCap = "round";
+			ctx.beginPath();
+			ctx.moveTo(Phleft+DiskR+25,Phtop+DiskTop-10);
+			ctx.lineTo(Phleft+DiskR+60,Phtop+DiskTop-10);
+			ctx.stroke();
+			ctx.closePath();
+			ctx.beginPath();
+			ctx.lineWidth=3;
+			ctx.strokeStyle='rgb(64,64,64)';
+			ctx.fillStyle='rgb(255,0,0)';		
+			ctx.arc(Phleft+Phwidth-NaVW/2-39,Phtop+DiskTop-10,10,PDEAnimationCount/10, 2 * Math.PI-PDEAnimationCount/10);
+			ctx.fill();
+			ctx.stroke();
+			ctx.closePath();
+			ctx.fillStyle='rgb(222,222,222)';
+			ctx.beginPath();
+			ctx.lineWidth=2;
+			ctx.strokeStyle='rgb(0,100,222)';//---blue,transducin
+			ctx.arc(Phleft+DiskR+26+TAnimationCount*5*(TAnimationCount>0),Phtop+DiskTop-10,5,0, 2 * Math.PI);
+			ctx.fill();
+			ctx.stroke();
+			ctx.closePath();
+
+			ctx.strokeStyle='rgb(255,255,0)';//---PDE animation
+			ctx.fillStyle='rgb(255,255,0)';//---PDE animation
+			ctx.lineWidth=0.0001;
+			ctx.beginPath();
+			ctx.moveTo(Phleft+Phwidth-NaVW/2-39,Phtop+DiskTop-10);
+			ctx.arc(Phleft+Phwidth-NaVW/2-39,Phtop+DiskTop-10,10,PDEAnimationCount/10, 2 * Math.PI-PDEAnimationCount/10);
+			ctx.lineTo(Phleft+Phwidth-NaVW/2-39,Phtop+DiskTop-10);
+			ctx.fill();
+			ctx.stroke();
+			ctx.closePath();		
+			ctx.strokeStyle='rgb(222,222,222)';
+		}	
+		{//---dark current animation
+		ctx.fillStyle='rgb(0,0,0)';
+		ctx.textAlign = "center"; 
+		ctx.fillText("NaV",Phleft+Phwidth+23,Phtop+DiskTop+15+NaVH/2);		
+		if(cGMP>0.16){	//---there is Na current
+			//---Na+ text
+			ctx.beginPath();
+			ctx.strokeStyle='rgb(64,64,64)';
+			ctx.lineWidth=cGMP*2;
+			ctx.moveTo(Phleft+Phwidth+NaVW,Phtop+DiskTop+10-cGMP/.2);
+			ctx.lineTo(Phleft+Phwidth-NaVW,Phtop+DiskTop+10-cGMP/.2);
+			ctx.lineTo(Phleft+Phwidth-NaVW+5,Phtop+DiskTop-5+10-cGMP/.2);
+			ctx.moveTo(Phleft+Phwidth-NaVW,Phtop+DiskTop+10-cGMP/.2);
+			ctx.lineTo(Phleft+Phwidth-NaVW+5,Phtop+DiskTop+5+10-cGMP/.2);
+			ctx.stroke();
+			ctx.closePath();			
+			ctx.textAlign = "start"; 
+			ctx.font = "12px Arial"; 
+			ctx.fillStyle='rgb('+(1-cGMP)*255+','+(1-cGMP)*255+','+(1-cGMP)*255+')';
+			ctx.fillText(" Na",Phleft+Phwidth+NaVW,Phtop+DiskTop+cGMP/.2+1);
+			ctx.fillText("+",Phleft+Phwidth+NaVW+18,Phtop+DiskTop+cGMP/.2-2);
+			ctx.rotate(-3.14/2);
+			ctx.fillText("Dark current",-(Phtop+DiskTop+120),Phleft+Phwidth+NaVW+28);
+			ctx.fillText("Outer segment",-(Phtop+DiskTop+60),Phleft-10);
+			ctx.rotate(3.14/2);
+			for(var base=2;base>=1;base--){
+				ctx.lineWidth=cGMP/.5;
+				ctx.strokeStyle='rgb('+base*64+','+base*64+','+base*64+')';
+				ctx.setLineDash([NaAnimationCount,NaAnimationCount]);
+				if(base==2){ctx.setLineDash([]);ctx.lineWidth=2}
+				//ctx.strokeStyle='rgb(64,64,64)';
+				ctx.beginPath();
+				ctx.moveTo(Phleft+Phwidth-NaVW,Phtop+DiskTop+15-cGMP/20);
+				ctx.lineTo(Phleft+Phwidth-NaVW,Phtop+DiskTop+120);
+				ctx.lineTo(Phleft+35,Phtop+DiskTop+120);
+				ctx.lineTo(Phleft+35,KVtop+NaVW/2);
+				ctx.lineTo(Phleft+Phwidth-NaVW,KVtop+NaVW/2);
+				ctx.stroke();
+				ctx.closePath();
+				if(base==2){ctx.strokeStyle='rgb(255,255,255)'}
+				ctx.beginPath();
+				ctx.moveTo(Phleft+Phwidth+NaVW+20,KVtop+NaVW/2);
+				ctx.lineTo(Phleft+Phwidth+NaVW+32,KVtop+NaVW/2);
+				ctx.lineTo(Phleft+Phwidth+NaVW+32,Phtop+DiskTop+10-cGMP/20);
+				ctx.lineTo(Phleft+Phwidth+NaVW+20,Phtop+DiskTop+10-cGMP/20);
+				ctx.stroke();
+				ctx.closePath();
+			}
+		}}
+		{//---glutamate release
+		ctx.setLineDash([]);
+		ctx.textAlign = "center"; 
+		ctx.font = "12px Arial"; 
+		ctx.fillStyle='rgb(0,0,0)';
+		ctx.fillText("Synaptic terminal",Phleft+Phwidth/2,PhAxonTop+20);
+
+		for(var i=0;i<10;i++){
+			VecGlu[i]+=(VecGlu[i]>-1)*3;		//---advance the vesicle
+			if(VecGlu[i]>30){VecGlu[i]=-1}	//---finish motion
+			if((Math.random()*20<cGMP)&&(VecGlu[i]==-1)){VecGlu[i]=0}//---new release
+			if(VecGlu[i]>-1){GluVes(Phleft+(i+.5)/10*Phwidth,PhAxonTop+35+VecGlu[i])};
+		}}		
+	}
+	//---shows the perceived image	
+	plot=function(){
+		ctx.clearRect(0, 0, canvas.width, canvas.height);			//---erase the canvas
+		ctx.setLineDash([]);
+		Background(LightLevel);
+		Photoreceptor();
+	}	
+	TimerID = setInterval(plot, 100);
+	canvas.onclick= function(){
+		if( (event.offsetX>Phleft)&&(event.offsetX<Phleft+Phwidth)){
+			if( (event.offsetY>20)&&(event.offsetY<45)){
+				LightLevel=(event.offsetX-Phleft)/Phwidth
+			}
+		}
+	}
+	document.getElementById("Photon").onclick = function() {//---brief light flash of a single photon
+		SaveLight=LightLevel;
+		LightLevel+=0.05;
+		if(LightLevel>1){LightLevel=1}
+		setTimeout(function(){LightLevel=SaveLight},1000);
+	}	
+	document.getElementById("Flash").onclick = function() {//---brief light flash
+		SaveLight=LightLevel;
+		LightLevel=1;
+		setTimeout(function(){LightLevel=SaveLight},1000);
+	}	
+	document.getElementById("Flash5").onclick = function() {//---10 brief light flashes
+		SaveLight=LightLevel;
+		LightLevel=1;
+		var FlashNum = 0; 
+		var FlashID=setInterval(function(){LightLevel=(LightLevel==1)*SaveLight+(LightLevel==SaveLight);FlashNum++;if(FlashNum>8){ clearInterval(FlashID);LightLevel=SaveLight}}, 1000);
+	}	
+	document.getElementById("Dark").onclick = function() {//--- brief light off
+		SaveLight=LightLevel;
+		LightLevel=0;
+		setTimeout(function(){LightLevel=SaveLight},1000);
+	}		
+	document.getElementById("Contrast").onclick = function() {//---5 contrast levels
+		SaveLight=LightLevel;		
+		var FlashNum = 1; 
+		LightLevel=0
+		var FlashID=setInterval(function(){LightLevel=FlashNum/5;FlashNum++;if(FlashNum>6){ clearInterval(FlashID);LightLevel=SaveLight}}, 4000);
+	}	
+	document.getElementById("DarkAdapt").onclick = function() {	//---brief light flash	
+		LightLevel=0;
+		InitVec();
+	}	
+	var RhGainElement = document.getElementById("RhGain");	//---brief light flash
+	RhGainElement.oninput = function() {RhodopsinGain=RhGainElement.value/4000}
+	RhGainElement.oninput();
+	var MetaIIGainElement = document.getElementById("MetaIIGain");	//---brief light flash
+	MetaIIGainElement.oninput = function() {MetaIIGain=MetaIIGainElement.value*5}
+	MetaIIGainElement.oninput();
+	var PDEGainElement = document.getElementById("PDEGain");	//---brief light flash
+	PDEGainElement.oninput = function() {PDEGain=PDEGainElement.value/20}
+	PDEGainElement.oninput();
+	var NaGainElement = document.getElementById("NaGain");	//---brief light flash
+	NaGainElement.oninput = function() {gNa=NaGainElement.value/4}
+	NaGainElement.oninput();	
+	var PathwayRadio0 = document.getElementById("Pathway0");	
+	PathwayRadio0.onclick=function(){//---direct clicked
+		document.getElementById("MetaIIGain").disabled = true;
+		document.getElementById("MetaIIGainTxT").style.color = 'rgb(128,128,128)';
+		document.getElementById("PDEGain").disabled = true;
+		document.getElementById("PDEGainTxT").style.color = 'rgb(128,128,128)';
+		DirectPathway=1;
+	}
+	var PathwayRadio1 = document.getElementById("Pathway1");	
+	PathwayRadio1.onclick=function(){//---direct clicked
+		document.getElementById("MetaIIGain").disabled = false;
+		document.getElementById("MetaIIGainTxT").style.color = 'rgb(0,0,0)';
+		document.getElementById("PDEGain").disabled = false;
+		document.getElementById("PDEGainTxT").style.color = 'rgb(0,0,0)';
+		DirectPathway=0;
+	};
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html>
+<style>
+p.groove {background-color: lightgrey;}
+span.groove1 {border-left-style: groove;background-color: lightgrey;}
+</style>
+<body>
+<p><b>Central Visual Pathways</b></p>
+<button  type="button" id="Control">Refresh</button><p>
+<button  type="button" id="Amblyopia">Amblyopia</button>
+<button  type="button" id="AmblyopiaTreatment">Amblyopia treatment</button>
+<p>
+<button  type="button" id="VisualDeficits">Visual field deficits</button>
+<button  type="button" id="VisualDeficitsQuiz">Quiz</button>
+<p>
+	<!-- <p>Ganglion cell types:</p> -->
+<!-- <button  type="button" id="OnFoveal">On Foveal</button> -->
+<!-- <button  type="button" id="OffFoveal">Off Foveal</button> -->
+<!-- <button  type="button" id="ONCentersmall">On-Center Small</button> -->
+<!-- <button  type="button" id="ONCenterlarge">On-Center Large</button> -->
+<canvas id="CircuitCanvas" width="400" height="600" style="border:1px solid #d3d3d3;position:relative;left: 0px;top:0px"></canvas>
+<canvas id="DeficitCanvas" width="200" height="600" style="border:1px solid #d3d3d3;position:relative;left: 0px;top:0px"></canvas>
+
+
+
+	<p ><b>Instructions:</b></p>
+	<p><b>Overview:</b> 
+	The retinal ganglion cells group together at the optic disk forming the <b>optic nerve</b>.
+	The two optic nerves merge at the <b>optic chiasm</b> at the base of the hypothalamus of the brain, where about half of the axons from each eye cross to the other side, 
+	and then continue on as the <b>optic tract</b> to the <b>Lateral Geniculate Nucleus (LGN)</b> of the thalamus.
+	At the chiasm, the axons from the nasal half of each retina cross over to the opposite side (decussate).
+	The optic tracts contain axons that respond to the contralateral visual field. 
+	Most ganglion cells synapse at the LGN.
+	The LGN is a sensory relay nucleus in the thalamus of the brain. The LGN consists of six layers. 
+	Layers 1, 4, and 6 correspond to information from the contralateral (crossed) fibers of the nasal retina (temporal visual field); 
+	layers 2, 3, and 5 correspond to information from the ipsilateral (uncrossed) fibers of the temporal retina (nasal visual field).
+	LGN neurons then project to the primary visual cortex (V1/striate cortex) via <b>optic radiations</b>.
+	<p><b>Striate cortex</b></p>
+	There is a direct correspondence from an angular position in the visual field of the eye, the axons map the retina point-by-point, creating a retinotopic projection
+	all the way through the optic tract to a nerve position in V1 (up to V4, i.e. the primary visual areas. 
+	After that, the visual pathway is roughly separated into a ventral and dorsal pathway). 
+	The projection is distorted for the foveal region, which occupies nearly half of the visual cortex. 
+	When viewed from the surface, each micro-region of the cortex (hypercolumn) is divided in two parts, one half for each eye; 
+	these are called <b>ocular dominance columns</b>. Axons from both eyes that cover the same region in visual space converge to side-by-side slabs of the cortex.
+	About half of the cortical cells are binocular - they are sensitive to inputs from both eyes and help to mediate depth perception.
+	<p><img id="oculardominance" width="300" height="220" src="oculardominance.jpg" >
+	This is a picture of a post-mortem human brain (medial view of the occipital lobe and the Calcarine sulcus). 
+	This patient had lost an eye before they died so only the neurons responding to the other eye were active. 
+	The patient had given permission for their brain to be removed and analyzed immediately after they had died. 
+	The brain was stained for cytochrome oxidase (an enzyme used in cellular metabolism) so the dark stripes correspond to brain regions that had been recently metabolically active. 
+	In other words, the dark and light stripes are this patient's ocular dominance columns.
+	<p>In this tutorial, ocular dominance columns are represented by different colors.
+	Click on one of the eyeballs to see its visual projections. 
+
+	<p><b>Amblyopia</b><p>
+	Amblyopia, also called lazy eye, is the most common cause of decreased vision in a single eye among children and younger adults (prevalence between 2-5%).
+	The cause of amblyopia can be any condition that interferes with visual image generation during early childhood.
+	The part of the brain receiving images from the affected eye is not stimulated properly and does not develop to its full visual potential. 
+	This has been confirmed by direct brain examination. 
+	David H. Hubel and Torsten Wiesel won the Nobel Prize in Physiology or Medicine in 1981 for their work in showing the extent of the damage to ocular dominance columns produced in kittens by sufficient visual deprivation during the so-called <b>critical period</b>. 
+	The maximum critical period in humans is from birth to two years old.
+	<p>The <b>'Amblyopia'</b> button simulates reduced visual acuity in the left eye. 
+	If left untreated, most LGN and cortical cells in Amblyopia patients become monocular, responding only to axonal projections from the good eye even if the visual deficit is resolved.
+	In this scenario, thalamic layers that respond to the amblyopic eye degenerate and cortical dominance columns over-represent the good eye.
+	<p>Treatment consists of correcting the optical deficit and often forcing use of the amblyopic eye, by patching the good eye, or instilling topical atropine in the good eye, or both.
+	After the underlying cause is fixed, vision is not restored right away, as the mechanism also involves the brain.
+	<p><img id="amblyopia" width="300" height="220" src="amblyopia.jpg" >
+
+	<p><b>Visual field deficits</b></p>
+	Visual deficits is an important to diagnostic tool for neurological damage. 
+	<p>&#8226;Damage to the retina or the optic nerve results in a loss of vision that is limited to the eye of origin.
+	<p>&#8226;Damage to the optic chiasm  (which is often the result of pituitary tumors) can affect the fibers that are crossing from the nasal retina of each eye, leaving the uncrossed fibers from the temporal retinas intact. 
+	<p>&#8226;Damage to structures that are central to the optic chiasm results in deficits that are limited to the contralateral visual hemifield.
+	<p>&#8226;Damage to the optic radiation are typically limited to a portion of the visual field.
+	<p>&#8226;Injury to central visual structures can also lead to a phenomenon called macular sparing, i.e., the loss of vision throughout wide areas of the visual field, with the exception of foveal vision. 
+	<p>&#8226;Macular sparing is commonly found with damage to the cortex, but can be a feature of damage anywhere along the length of the visual pathway. 
+	Although several explanations for macular sparing have been offered, including overlap in the pattern of crossed and uncrossed ganglion cells supplying central vision, the basis for this selective preservation is not clear.
+	
+	
+	</p><a href="https://www.ncbi.nlm.nih.gov/books/NBK10912/">https://www.ncbi.nlm.nih.gov/books/NBK10912/</a>
+	</p><a href="https://en.wikipedia.org/wiki/Amblyopia">https://en.wikipedia.org/wiki/Amblyopia</a>
+	</p><i> Composed by Alon Poleg-Polsky, 2019</p>alon.poleg-polsky@ucdenver.edu</i>
+	</div>
+	</div>
+<script>
+
+	var canvas = document.getElementById("CircuitCanvas");
+	var Deficitcanvas = document.getElementById("DeficitCanvas");
+	//var Imagecanvas = document.getElementById("ImageCanvas");
+	var ctx = canvas.getContext("2d");
+	var DFTctx = Deficitcanvas.getContext("2d");
+	//var ImgCtx = Imagecanvas.getContext("2d");
+	//---variables 
+	var ShowEyePathway=0;
+	var EyeSize=70,EyeTopPos=150,EyeDistPos=100;
+	var UnusedEyeAlpha=0.1;
+	//---Amblyopia
+	var ShowAmblyopia=0,ShowAmblyopiaTreatment=0;
+	var ShowDeficits=0,ShowDeficitsQuiz=0;
+	var DeficitNumber=0;
+	var DeficitX=[72,0,68,142,130];
+	var DeficitY=[10,53,100,190,250];
+	var DeficitMark=['A','B','C','D','E'];
+	var DeficitLocation=['Optic Nerve','Chiasm','Optic Tract','Optic Radiations','Cortex'];
+	var PhNum=10,PhSpace=60,PhTop=10,PhLeft=80,PhWidth=3;
+	var HrTop=85;
+	var stimuli=new Array(PhNum);		//---stimuli
+	var Ph_Vm=new Array(PhNum);			//---photoreceptors
+	var HrLR_Vm=new Array(PhNum-1);		//---horizontal cells
+	var HrRL_Vm=new Array(PhNum-1);		//---horizontal cells
+	var OFFB_Vm=new Array(PhNum);		//---OFF bip cells
+	var ONB_Vm=new Array(PhNum);		//---ON bip cells
+	var ONAC_Vm=new Array(PhNum);		//---ON amacrine cells
+	var GC_Vm=0;
+	stimuli.fill(0.5);
+	var Ph_Hr_g=0,Hr_Ph_g=0,Ph_Bip_g=0,Ph_Bip_g=0,Bip_AC_g=0,ONBip_GC_g=0,OFFBip_GC_g=0,ONBip_GS_g=0,OFFBip_GS_g=0,A_GC_g=0,A_GS_g=0;
+	var OrigImage_width=100;
+	var OrigImage_height=OrigImage_width;
+	var OItop=20,OIleft=10;
+	var ShowImage=1;
+	var r=0,g=0,b=0;
+	//---create 2d image array
+	function CreateImageArray(rows,cols) {
+		var arr = new Array(rows);
+		for (var i=0;i<rows;i++) {
+			arr[i] = new Array(cols);
+		}
+	  return arr;
+	}
+	//---make the original image
+	function CreateOriginalImage(){
+		//---the image
+		<!-- ImgCtx.clearRect(0, 0, Imagecanvas.width, Imagecanvas.height);			//---erase the canvas -->
+		<!-- ImgCtx.beginPath(); -->
+		<!-- ImgCtx.fillStyle='rgb(128,128,128)'; -->
+		<!-- ImgCtx.lineWidth=1; -->
+		<!-- ImgCtx.strokeStyle="black"; -->
+		<!-- ImgCtx.rect(OIleft,OItop,OrigImage_width,OrigImage_height);		//---background -->
+		<!-- ImgCtx.fill(); -->
+		<!-- ImgCtx.stroke(); -->
+		<!-- ImgCtx.closePath(); -->
+		<!-- if(ShowImage==1){ -->
+			<!-- ImgCtx.beginPath(); -->
+			<!-- var grd=ImgCtx.createLinearGradient(OIleft,OItop,OIleft+OrigImage_width,OItop); -->
+			<!-- grd.addColorStop(0,'rgb(0,0,0)'); -->
+			<!-- grd.addColorStop(1,"white"); -->
+			<!-- ImgCtx.fillStyle=grd; -->
+			<!-- ImgCtx.rect(OIleft+2,2+OItop,OrigImage_width-4,OrigImage_height-4); -->
+			<!-- ImgCtx.fill(); -->
+			<!-- ImgCtx.closePath(); -->
+			<!-- ImgCtx.textAlign = "center"; -->
+			<!-- ImgCtx.font = "900 30px Arial"; -->
+			<!-- ImgCtx.beginPath(); -->
+			<!-- ImgCtx.fillStyle='rgb(0,0,0)' -->
+			<!-- ImgCtx.fillText("Test",OIleft+OrigImage_width/2,OItop+30); -->
+			<!-- ImgCtx.closePath(); -->
+			<!-- ImgCtx.beginPath(); -->
+			<!-- ImgCtx.fillStyle='rgb(128,128,128)' -->
+			<!-- ImgCtx.fillText("Test",OIleft+OrigImage_width/2,OItop+60); -->
+			<!-- ImgCtx.closePath(); -->
+			<!-- ImgCtx.beginPath(); -->
+			<!-- ImgCtx.fillStyle='rgb(255,255,255)' -->
+			<!-- ImgCtx.fillText("Test",OIleft+OrigImage_width/2,OItop+90); -->
+			<!-- ImgCtx.closePath(); -->
+		<!-- } -->
+		<!-- if(ShowImage==2){ -->
+			<!-- ImgCtx.beginPath(); -->
+			<!-- var grd=ImgCtx.createLinearGradient(OIleft,OItop,OIleft+OrigImage_width,OItop); -->
+			<!-- grd.addColorStop(0,"black"); -->
+			<!-- grd.addColorStop(1,"white"); -->
+			<!-- ImgCtx.fillStyle=grd; -->
+			<!-- //ImgCtx.rect(OIleft+2,2+OItop,OrigImage_width-4,OrigImage_height-4); -->
+			<!-- //ImgCtx.fill(); -->
+			<!-- //ImgCtx.closePath(); -->
+			<!-- ImgCtx.textAlign = "center"; -->
+			<!-- ImgCtx.font = "900 30px Arial"; -->
+			<!-- //ImgCtx.beginPath(); -->
+			<!-- //ImgCtx.fillStyle='rgb(0,0,0)' -->
+			<!-- ImgCtx.fillText("Test",OIleft+OrigImage_width/2,OItop+30); -->
+			<!-- ImgCtx.closePath(); -->
+			<!-- ImgCtx.beginPath(); -->
+			<!-- var grd=ImgCtx.createLinearGradient(OIleft,OItop,OIleft+OrigImage_width,OItop); -->
+			<!-- grd.addColorStop(0,'rgb(64,64,64)'); -->
+			<!-- grd.addColorStop(1,'rgb(192,192,192)'); -->
+			<!-- ImgCtx.fillStyle=grd; -->
+			<!-- ImgCtx.fillText("Test",OIleft+OrigImage_width/2,OItop+60); -->
+			<!-- ImgCtx.closePath(); -->
+			<!-- ImgCtx.beginPath(); -->
+			<!-- var grd=ImgCtx.createLinearGradient(OIleft,OItop,OIleft+OrigImage_width,OItop); -->
+			<!-- grd.addColorStop(0,'rgb(116,116,116)'); -->
+			<!-- grd.addColorStop(1,'rgb(140,140,140)'); -->
+			<!-- ImgCtx.fillStyle=grd; -->
+			<!-- ImgCtx.fillText("Test",OIleft+OrigImage_width/2,OItop+90); -->
+			<!-- ImgCtx.closePath(); -->
+		<!-- } -->
+		<!-- if(ShowImage==3){ -->
+			<!-- ImgCtx.beginPath(); -->
+			<!-- var grd=ImgCtx.createLinearGradient(OIleft,10+OItop,OIleft,50+OItop); -->
+			<!-- grd.addColorStop(0,"black"); -->
+			<!-- grd.addColorStop(1,"white"); -->
+			<!-- ImgCtx.fillStyle=grd; -->
+			<!-- ImgCtx.arc(OIleft+30,OItop+30,20,Math.PI*2,0); -->
+			<!-- ImgCtx.arc(OIleft+OrigImage_width-30,OItop+30,20,Math.PI*2,0); -->
+			<!-- ImgCtx.fill(); -->
+			<!-- ImgCtx.closePath(); -->
+			<!-- ImgCtx.beginPath(); -->
+			<!-- ImgCtx.fillStyle='rgb(32,32,32)'; -->
+			<!-- ImgCtx.arc(OIleft+30,OItop+OrigImage_height-30,20,0,Math.PI*1); -->
+			<!-- ImgCtx.fill(); -->
+			<!-- ImgCtx.closePath(); -->
+			<!-- ImgCtx.beginPath(); -->
+			<!-- ImgCtx.fillStyle='rgb(224,224,224)'; -->
+			<!-- ImgCtx.arc(OIleft+OrigImage_width-30,OItop+OrigImage_height-30,20,0,Math.PI*1); -->
+			<!-- ImgCtx.fill(); -->
+			<!-- ImgCtx.closePath(); -->
+			<!-- ImgCtx.beginPath(); -->
+			<!-- ImgCtx.fillStyle='rgb(224,224,224)'; -->
+			<!-- ImgCtx.arc(OIleft+OrigImage_width-50,OItop+30,20,0,Math.PI*2); -->
+			<!-- ImgCtx.fill(); -->
+			<!-- ImgCtx.closePath(); -->
+			<!-- } -->
+		<!-- if(ShowImage==4){ -->
+			<!-- ImgCtx.beginPath(); -->
+			<!-- ImgCtx.fillStyle='rgb(32,32,32)'; -->
+			<!-- var grd=ImgCtx.createLinearGradient(OIleft,2+OItop,OIleft,40+OItop); -->
+			<!-- grd.addColorStop(0,"black"); -->
+			<!-- grd.addColorStop(1,"white"); -->
+			<!-- ImgCtx.fillStyle=grd; -->
+			<!-- for(var i=5;i<OrigImage_width-10;i+=10){ -->
+				<!-- ImgCtx.rect(i+OIleft,2+OItop,i/10,38); -->
+			<!-- } -->
+			<!-- ImgCtx.fill(); -->
+			<!-- ImgCtx.closePath(); -->
+			<!-- ImgCtx.beginPath(); -->
+			<!-- ImgCtx.fillStyle='rgb(224,224,224)'; -->
+			<!-- var grd=ImgCtx.createLinearGradient(OIleft,OrigImage_height-60+OItop,OIleft,OrigImage_height-10+OItop); -->
+			<!-- grd.addColorStop(0,"black"); -->
+			<!-- grd.addColorStop(1,"white"); -->
+			<!-- ImgCtx.fillStyle=grd; -->
+			<!-- for(var i=5;i<OrigImage_width-10;i+=10){ -->
+				<!-- ImgCtx.rect(OrigImage_width-i-10+OIleft,OrigImage_height-42+OItop,i/10,38); -->
+				
+			<!-- } -->
+			<!-- ImgCtx.fill(); -->
+			<!-- ImgCtx.closePath(); -->
+			<!-- ImgCtx.beginPath(); -->
+			<!-- ImgCtx.fillStyle='rgb(255,255,255)'; -->
+			<!-- ImgCtx.rect(2+OIleft,17+OItop,OrigImage_width-4,10); -->
+			<!-- ImgCtx.fill(); -->
+			<!-- ImgCtx.closePath(); -->
+			<!-- ImgCtx.beginPath(); -->
+			<!-- ImgCtx.fillStyle='rgb(0,0,0)'; -->
+			<!-- ImgCtx.rect(2+OIleft,OrigImage_height-22+OItop,OrigImage_width-4,10); -->
+
+			<!-- ImgCtx.fill(); -->
+			<!-- ImgCtx.closePath(); -->
+			<!-- ImgCtx.beginPath(); -->
+			<!-- var grd=ImgCtx.createLinearGradient(2+OIleft,OItop,OrigImage_width-4+OIleft,OItop); -->
+			<!-- grd.addColorStop(0,"black"); -->
+			<!-- grd.addColorStop(1,"white"); -->
+			<!-- ImgCtx.fillStyle=grd; -->
+			<!-- ImgCtx.rect(2+OIleft,35+OItop,OrigImage_width-4,15); -->
+			<!-- ImgCtx.fill(); -->
+			<!-- ImgCtx.closePath(); -->
+			<!-- ImgCtx.beginPath(); -->
+			<!-- var grd=ImgCtx.createLinearGradient(2+OIleft,OItop,OrigImage_width-4+OIleft,OItop); -->
+			<!-- grd.addColorStop(1,"black"); -->
+			<!-- grd.addColorStop(0,"white"); -->
+			<!-- ImgCtx.fillStyle=grd; -->
+			<!-- ImgCtx.rect(2+OIleft,OrigImage_height-50+OItop,OrigImage_width-4,15); -->
+			<!-- ImgCtx.fill(); -->
+			<!-- ImgCtx.closePath(); -->
+		<!-- } -->
+		<!-- //---text -->
+		<!-- ImgCtx.beginPath(); -->
+		<!-- ImgCtx.fillStyle='rgb(0,0,0)' -->
+		<!-- ImgCtx.strokeStyle=ctx.fillStyle; -->
+		<!-- ImgCtx.textAlign = "center"; -->
+		<!-- ImgCtx.font = "12px Arial"; -->
+		<!-- ImgCtx.fillText("Input",OIleft+OrigImage_width/2,OItop*1-5); -->
+		<!-- //ImgCtx.fillText("Output (Ganglion)",OIleft*2+OrigImage_width*1.5,OItop*1-5); -->
+		<!-- ImgCtx.fillText("Photoreceptor",OIleft+OrigImage_width/2,OrigImage_height+OItop*2-5); -->
+		<!-- ImgCtx.fillText("Horizontal",OIleft*2+OrigImage_width*1.5,OrigImage_height+OItop*2-5); -->
+		<!-- ImgCtx.fillText("Off Bipolar",OIleft*1+OrigImage_width*0.5,OrigImage_height*2+OItop*3-5); -->
+		<!-- ImgCtx.fillText("On Bipolar",OIleft*2+OrigImage_width*1.5,OrigImage_height*2+OItop*3-5); -->
+		<!-- //ImgCtx.fillText("On Amacrine",OIleft*2+OrigImage_width*1.5,OrigImage_height*3+OItop*4-5); -->
+	}
+	//---initialize the field
+	function Init(){
+		PhNum=7
+		//canvas.width=PhLeft+PhSpace*(0+PhNum)+50
+		var stimuli=new Array(PhNum);		//---stimuli
+		var Ph_Vm=new Array(PhNum);			//---photoreceptors
+		var Hr_Vm=new Array(PhNum-1);		//---horizontal cells
+		var OFFB_Vm=new Array(PhNum);		//---OFF bip cells
+		var ONB_Vm=new Array(PhNum);		//---ON bip cells
+		var ONAC_Vm=new Array(PhNum);		//---ON bip cells
+		stimuli.fill(0.5);
+		//---original image
+		
+		//---fill the image
+		CreateOriginalImage();
+	}
+	//---small schematic next to cells
+	<!-- function On_Off_plot(isOn,Ypos){ -->
+		<!-- var PlotLeft=10,PlotWidth=40,PlotHeight=20; -->
+		<!-- ctx.beginPath(); -->
+		<!-- var grd=ctx.createLinearGradient(-PlotWidth*.2,0,PlotWidth*1.2,0); -->
+		<!-- grd.addColorStop(0,"black"); -->
+		<!-- grd.addColorStop(1,"white"); -->
+		<!-- ctx.fillStyle=grd; -->
+		<!-- ctx.lineWidth=0.5; -->
+		<!-- ctx.strokeStyle="grey"; -->
+		<!-- ctx.moveTo(PlotLeft+isOn*PlotWidth,Ypos-PlotHeight) -->
+		<!-- ctx.lineTo(PlotLeft+isOn*PlotWidth,Ypos); -->
+		<!-- ctx.lineTo(PlotLeft+(isOn==0)*PlotWidth,Ypos) -->
+		<!-- ctx.lineTo(PlotLeft+isOn*PlotWidth,Ypos-PlotHeight) -->
+		<!-- ctx.fill(); -->
+		<!-- ctx.stroke(); -->
+		<!-- ctx.closePath(); -->
+		<!-- //---border -->
+		<!-- ctx.beginPath(); -->
+		<!-- ctx.lineWidth=02; -->
+		<!-- ctx.strokeStyle='rgb(0,0,0)'; -->
+		<!-- ctx.rect(PlotLeft-2,Ypos-PlotHeight*1.2,PlotWidth+4,PlotHeight*1.2); -->
+		<!-- ctx.stroke(); -->
+		<!-- ctx.closePath(); -->
+	<!-- } -->
+	//---cells colors
+	function SetColor(val,minmax,thresh){
+		r=0,g=0,b=0
+		var Cbase=[128,128,128];//157,195,230
+		var Cpos=[0,250,0];//204,255,50
+		var Cneg=[150,0,150];//112.48,160
+		if((val>minmax)&&(thresh)){
+			r=val/thresh*64
+			return 'rgb('+r+',0,0)'
+		}else{
+			if(minmax<Math.abs(val)){minmax=Math.abs(val)}
+			if(val>=0){
+				r=Cbase[0]+(Cpos[0]-Cbase[0])*val/minmax
+				g=Cbase[1]+(Cpos[1]-Cbase[1])*val/minmax
+				b=Cbase[2]+(Cpos[2]-Cbase[2])*val/minmax
+			}else{
+				r=Cbase[0]-(Cneg[0]-Cbase[0])*val/minmax
+				g=Cbase[2]-(Cneg[1]-Cbase[1])*val/minmax
+				b=Cbase[2]-(Cneg[2]-Cbase[2])*val/minmax
+			}
+			return 'rgb('+r+','+g+','+b+')'
+		}
+	}
+	//---schematic dark and light symbols
+	function Light_On_Off(posX,posY,posDiff){
+		<!-- ctx.beginPath(); -->
+		<!-- ctx.fillStyle='rgb(0,0,0)' -->
+		<!-- ctx.strokeStyle='rgb(0,0,0)'; -->
+		<!-- ctx.lineWidth=3; -->
+		<!-- ctx.arc(posX,posY,3,0,2*Math.PI); -->
+		<!-- ctx.stroke(); -->
+		<!-- ctx.fill(); -->
+		<!-- ctx.closePath(); -->
+		<!-- ctx.beginPath(); -->
+		<!-- ctx.fillStyle='rgb(255,255,255)' -->
+		<!-- ctx.arc(posX+posDiff,posY,2,0,2*Math.PI); -->
+		<!-- ctx.stroke(); -->
+		<!-- ctx.fill(); -->
+		<!-- ctx.closePath(); -->
+		<!-- for( var i=0;i<8;i++){ -->
+			<!-- ctx.beginPath(); -->
+			<!-- ctx.lineWidth=1; -->
+			<!-- ctx.moveTo(posX+posDiff+4*Math.sin(Math.PI/4*i),posY+4*Math.cos(Math.PI/4*i)) -->
+			<!-- ctx.lineTo(posX+posDiff+6*Math.sin(Math.PI/4*i),posY+6*Math.cos(Math.PI/4*i)) -->
+			<!-- ctx.stroke(); -->
+			<!-- ctx.closePath(); -->
+		<!-- } -->
+	}
+	//---draws a schematic of the eyes, the optic nerve, the chiams, the optic tract , the LGN and the cortex
+	function DrawPath(Left){
+		//---Amblyopia
+		//if(Left*ShowEyePathway==-1){ctx.globalAlpha=UnusedEyeAlpha};
+		var locY=EyeTopPos;
+		ctx.beginPath();
+		ctx.lineCap="round";
+		locX=canvas.width/2-Left*EyeDistPos;
+		ctx.fillStyle='rgb(255,255,255)';
+		ctx.strokeStyle='rgb(128,128,128)';
+		ctx.lineWidth=3;
+		ctx.arc(locX,locY,EyeSize,0,2*Math.PI);		//---eye
+		ctx.stroke();
+		ctx.fill();
+		ctx.closePath();
+		ctx.beginPath();
+		ctx.lineWidth=1;
+		ctx.arc(locX,locY-EyeSize*1.5,EyeSize*.75,.3*Math.PI,(1-.3)*Math.PI);		//---lens
+		ctx.stroke();
+		ctx.closePath();
+		if(Left*ShowEyePathway==-1){ctx.globalAlpha=UnusedEyeAlpha}else{ctx.globalAlpha=1};
+		//---photoreceptors schematic
+		var PhSpaceDeg=5/(180/Math.PI),PhNum=15;
+		ctx.lineWidth=1;
+		ctx.strokeStyle='rgb(0,0,0)';
+		for( var ph=-PhNum;ph<=PhNum;ph++){
+			ctx.beginPath();
+			ctx.strokeStyle='rgb(0,'+((ph<0)*255)+','+((ph>=0)*255)+')';
+			ctx.moveTo(locX+Math.cos(ph*PhSpaceDeg+Math.PI*1.5)*EyeSize*.95,locY-Math.sin(ph*PhSpaceDeg+Math.PI*1.5)*EyeSize*.95);
+			ctx.lineTo(locX+Math.cos(ph*PhSpaceDeg+Math.PI*1.5)*(EyeSize*.85),locY-Math.sin(ph*PhSpaceDeg+Math.PI*1.5)*EyeSize*0.85);
+			ctx.stroke();
+			ctx.closePath();
+		}
+		//---bipolar cells schematic
+		var BipSpaceDeg=6/(180/Math.PI),BipNum=12;
+		for( var Bip=-BipNum;Bip<=BipNum;Bip++){
+			ctx.beginPath();
+			ctx.strokeStyle='rgb(0,'+((Bip<0)*255)+','+((Bip>=0)*255)+')';
+			ctx.fillStyle=ctx.strokeStyle;
+			if(Math.abs(Bip)%2){ctx.fillStyle='white'};
+			ctx.moveTo(locX+Math.cos(Bip*BipSpaceDeg+Math.PI*1.5)*EyeSize*.82,locY-Math.sin(Bip*BipSpaceDeg+Math.PI*1.5)*EyeSize*.82);
+			ctx.lineTo(locX+Math.cos(Bip*BipSpaceDeg+Math.PI*1.5)*(EyeSize*0.66),locY-Math.sin(Bip*BipSpaceDeg+Math.PI*1.5)*EyeSize*0.66);
+			ctx.moveTo(locX+Math.cos(Bip*BipSpaceDeg+Math.PI*1.5)*EyeSize*.75,locY-Math.sin(Bip*BipSpaceDeg+Math.PI*1.5)*EyeSize*.75);
+			ctx.arc(locX+Math.cos(Bip*BipSpaceDeg+Math.PI*1.5)*(EyeSize*0.75),locY-Math.sin(Bip*BipSpaceDeg+Math.PI*1.5)*EyeSize*0.75,2,0,2*Math.PI);
+			ctx.stroke();
+			ctx.fill();
+			ctx.closePath();
+		}
+		//---ganglion cells schematic
+		var GangSpaceDeg=18/(180/Math.PI),GangNum=4;
+		for( var Gang=-GangNum;Gang<=GangNum;Gang++){
+			//---axon
+			ctx.beginPath();
+			ctx.lineWidth=1;
+			ctx.strokeStyle='rgb(0,'+((Gang<0)*255)+','+((Gang>=0)*255)+')';
+			ctx.moveTo(locX+Math.cos(Gang*GangSpaceDeg+Math.PI*1.5)*EyeSize*.55,locY-Math.sin(Gang*GangSpaceDeg+Math.PI*1.5)*EyeSize*.55);
+			ctx.lineTo(locX+Math.cos(Gang*GangSpaceDeg+Math.PI*1.5)*(EyeSize*0.4),locY-Math.sin(Gang*GangSpaceDeg+Math.PI*1.5)*EyeSize*0.4);
+			if(Gang<GangNum)	{//---connect to next
+				ctx.lineTo(locX+Math.cos((Gang+1)*GangSpaceDeg+Math.PI*1.5)*(EyeSize*0.4),locY-Math.sin((Gang+1)*GangSpaceDeg+Math.PI*1.5)*EyeSize*0.4);
+			}
+			ctx.stroke();
+			ctx.closePath();
+			//---soma
+			ctx.beginPath();
+			ctx.strokeStyle='rgb(0,'+((Gang<0)*255)+','+((Gang>=0)*255)+')';
+			ctx.fillStyle=ctx.strokeStyle;
+			if(Math.abs(Gang)%2){ctx.fillStyle='white'};
+			ctx.arc(locX+Math.cos(Gang*GangSpaceDeg+Math.PI*1.5)*(EyeSize*0.55),locY-Math.sin(Gang*GangSpaceDeg+Math.PI*1.5)*EyeSize*0.55,6,0,2*Math.PI);
+			ctx.stroke();
+			ctx.fill();
+			ctx.closePath();
+			//---[+]
+			ctx.beginPath();
+			ctx.lineWidth=2;
+			ctx.strokeStyle='rgb('+(255-255*(Math.abs(Gang)%2))+','+(255-255*(Math.abs(Gang)%2)*(Gang>=0))+','+(255-255*(Math.abs(Gang)%2)*(Gang<0))+')'
+			ctx.moveTo(locX+Math.cos(Gang*GangSpaceDeg+Math.PI*1.5)*EyeSize*.55-3,locY-Math.sin(Gang*GangSpaceDeg+Math.PI*1.5)*EyeSize*.55);
+			ctx.lineTo(locX+Math.cos(Gang*GangSpaceDeg+Math.PI*1.5)*(EyeSize*0.55)+3,locY-Math.sin(Gang*GangSpaceDeg+Math.PI*1.5)*EyeSize*0.55);
+			ctx.moveTo(locX+Math.cos(Gang*GangSpaceDeg+Math.PI*1.5)*EyeSize*.55,locY-Math.sin(Gang*GangSpaceDeg+Math.PI*1.5)*EyeSize*.55-3*(Math.abs(Gang)%2));
+			ctx.lineTo(locX+Math.cos(Gang*GangSpaceDeg+Math.PI*1.5)*(EyeSize*0.55),locY-Math.sin(Gang*GangSpaceDeg+Math.PI*1.5)*EyeSize*0.55+3*(Math.abs(Gang)%2));
+			ctx.stroke();
+			ctx.closePath();
+		}
+		if(ShowAmblyopia){ShowEyePathway=-1}	//---left eye is affected
+		if(ShowAmblyopiaTreatment){ShowEyePathway=-Left}		//---both eyes are affected
+		//---light path (left and right sides)
+		if(Left*ShowEyePathway==-1){ctx.globalAlpha=UnusedEyeAlpha/2}else{ctx.globalAlpha=.2};
+		for(var LR=-1;LR<=1;LR+=2){
+			ctx.beginPath();
+			ctx.fillStyle='rgb(0,'+((LR<0)*255)+','+((LR>=0)*255)+',2)';
+			ctx.moveTo(locX,locY-EyeSize);
+			ctx.arc(locX,locY,EyeSize*0.3,-1.5*Math.PI-GangSpaceDeg*GangNum*(LR==1),-1.5*Math.PI+GangSpaceDeg*GangNum*(LR==-1))//,1*Math.PI)//+LR*.1*Math.PI);
+			ctx.lineTo(locX,locY-EyeSize);
+			ctx.arc(locX,locY-3*EyeSize,EyeSize*0.6,-1.5*Math.PI-GangSpaceDeg*GangNum*(LR==-1),-1.5*Math.PI+GangSpaceDeg*GangNum*(LR==1))//,1*Math.PI)//+LR*.1*Math.PI);
+			ctx.lineTo(locX,locY-EyeSize);
+			ctx.stroke();
+			ctx.fill();
+			ctx.closePath();
+			//Math.cos(GangSpaceDeg*GangNum+Math.PI*1.5)*
+		}
+		ctx.globalAlpha = 1;
+		//---optic nerve - filler
+		var OpticNerveExitAngle=Math.PI*1.5+Left/3;
+		ctx.beginPath();
+		ctx.lineWidth=5;
+		ctx.strokeStyle='white';
+		ctx.moveTo(locX+Math.cos(OpticNerveExitAngle)*EyeSize*.4,locY-Math.sin(OpticNerveExitAngle)*EyeSize*.4);
+		ctx.lineTo(locX+Math.cos(OpticNerveExitAngle)*(EyeSize*1.5),locY-Math.sin(OpticNerveExitAngle)*EyeSize*1.5);
+		ctx.stroke();
+		ctx.closePath();
+		for(var nerve=0;nerve<3;nerve++){		//---black, green/blue
+			if(Left*ShowEyePathway==-1){ctx.globalAlpha=UnusedEyeAlpha}else{ctx.globalAlpha=1};
+			ctx.beginPath();
+			ctx.lineWidth=1+(nerve>0);
+			ctx.strokeStyle='rgb(0,'+((nerve==1)*255)+','+((nerve==2)*255)+')';
+			if(Left==1){ctx.strokeStyle='rgb(0,'+((nerve==2)*255)+','+((nerve==1)*255)+')'};
+			//---internal line/curve
+			ctx.moveTo(locX+Math.cos(OpticNerveExitAngle+Left*.1)*EyeSize*.4-Left*nerve*2,locY-Math.sin(OpticNerveExitAngle+Left*.1)*EyeSize*.4);
+			if(nerve==0){	//---outlines
+				ctx.globalAlpha = 1;
+			}
+			ctx.lineTo(locX+Math.cos(OpticNerveExitAngle)*(EyeSize*1.5)+2*Left-Left*nerve*2,locY-Math.sin(OpticNerveExitAngle)*EyeSize*1.5);
+			var x1=locX+Math.cos(OpticNerveExitAngle)*(EyeSize*1.5)+2*Left;
+			var y1=locY-Math.sin(OpticNerveExitAngle)*EyeSize*1.5;
+			if(nerve<2){ctx.bezierCurveTo(x1+Left*5,y1+20+nerve*8,canvas.width/2,y1+20+nerve*3+nerve*Left*2,canvas.width/2,y1+20+nerve*3+nerve*Left*2)};
+			
+			ctx.stroke();
+			ctx.closePath();
+		}
+		//---LGN
+		var LGNdiam=30;
+		var LGNx1=x1-Left*20;
+		var LGNy1=y1+100;
+		for(var draw=0;draw<=1;draw++){
+			ctx.beginPath();
+			if(draw){
+				ctx.fillStyle='rgb(0,'+((Left==1)*255)+','+((Left==-1)*255)+')';
+			}else{
+				ctx.fillStyle='rgb(222,222,222)'
+			}
+			ctx.lineWidth=1;
+			ctx.setLineDash([]);
+			ctx.arc(LGNx1-Left*5,LGNy1+20,LGNdiam-draw*4,0,2*Math.PI);
+			ctx.globalAlpha = (draw==0)*.8+.2;
+			ctx.fill();
+			ctx.closePath();
+		}
+		ctx.globalAlpha =1;
+		//---layers in LGN
+		for(var layer=1;layer<=6;layer++){
+			ctx.beginPath();
+			ctx.lineWidth=2;
+			ctx.strokeStyle='rgb(0,'+((Left==1)*255)+','+((Left==-1)*255)+')';
+			if(ShowEyePathway!=0){
+				var SameSide=((layer==1)||(layer==4)||(layer==6));	//---1,4,6 come from the contralateral eye
+				if(((SameSide)&&(Left*ShowEyePathway==1))||((SameSide==0)&&(Left*ShowEyePathway==-1))){
+					ctx.globalAlpha=UnusedEyeAlpha
+				}else{ctx.globalAlpha=1}
+				if(ShowAmblyopiaTreatment){ctx.globalAlpha=1}	//---treatment rstores LGN columns
+			}
+			if(Left<0){
+				ctx.arc(LGNx1-Left*10,LGNy1-2+layer*3,layer*4,(.2+layer/30)*Math.PI,(1+layer/40)*Math.PI);
+			}else{
+				ctx.arc(LGNx1-Left*8,LGNy1-2+layer*3,layer*4,(-.2+layer/160)*Math.PI,-(1+layer/18)*Math.PI);
+			}
+			ctx.stroke();
+			ctx.closePath();
+		}
+		ctx.globalAlpha =1;
+		//---external line/curve
+		ctx.beginPath();
+		ctx.lineWidth=1;
+		ctx.strokeStyle='rgb(0,0,0)'
+		ctx.moveTo(locX+Math.cos(OpticNerveExitAngle-Left*.1)*EyeSize*.4,locY-Math.sin(OpticNerveExitAngle-Left*.1)*EyeSize*.4);
+		ctx.lineTo(locX+Math.cos(OpticNerveExitAngle)*(EyeSize*1.5)-2*Left,locY-Math.sin(OpticNerveExitAngle)*EyeSize*1.5+3);
+		ctx.bezierCurveTo(x1+Left*10,y1+50,x1-Left*20,y1+100,LGNx1,LGNy1);
+		//---chiasm
+		ctx.moveTo(x1-Left*12,y1+100);
+		ctx.bezierCurveTo(x1+Left*20,y1+32,x1,y1+28,canvas.width/2,y1+28);
+		ctx.stroke();
+		ctx.closePath();
+		//---outer (same side) and inner (contra side) nerves
+		if(Left*ShowEyePathway==-1){ctx.globalAlpha=UnusedEyeAlpha}else{ctx.globalAlpha=1};
+		
+		ctx.beginPath();
+		ctx.lineWidth=2;
+		ctx.moveTo(x1-Left*3,y1);
+		ctx.strokeStyle='rgb(0,'+((Left==1)*255)+','+((Left==-1)*255)+')';
+		ctx.bezierCurveTo(x1+Left*15,y1+50,LGNx1+Left*5,y1+100,LGNx1,LGNy1);
+		ctx.stroke();
+		ctx.closePath();
+		//---following the chiasm
+		if((Left*ShowEyePathway==1)||(ShowAmblyopiaTreatment)){ctx.globalAlpha=UnusedEyeAlpha}else{ctx.globalAlpha=1};
+		ctx.beginPath();
+		ctx.moveTo(canvas.width/2,y1+23-Left*2);
+		ctx.bezierCurveTo(LGNx1+Left*10,y1+20,LGNx1+Left*40,y1+30,LGNx1+5*Left,LGNy1);
+		ctx.stroke();
+		ctx.closePath();
+		ctx.globalAlpha=1
+		//---cortex
+		var Cortexdiam=150;
+		//if(ShowAmblyopia){ShowEyePathway=0}
+		//if(ShowAmblyopiaTreatment){ShowEyePathway=0}		//---both eyes are affected
+		for(var draw=0;draw<=1;draw++){
+			ctx.beginPath();
+			if(draw){
+				var colback=150;
+				if(Left*ShowEyePathway==-1){colback=255}
+				if(ShowAmblyopiaTreatment){colback=150}
+				ctx.fillStyle='rgb('+colback+','+((Left==1)*(255-colback)+colback)+','+((Left==-1)*(255-colback)+colback)+')';
+			}else{
+				ctx.fillStyle='rgb(222,222,222)'
+			}
+			ctx.lineWidth=1;
+			ctx.setLineDash([]);
+			ctx.moveTo(canvas.width/2-(Left)*(10+draw*4),canvas.height);
+			ctx.bezierCurveTo(canvas.width/2-(Left)*(10+draw*4),canvas.height-Cortexdiam+draw*4,canvas.width/2-(Left)*(10+draw*4),canvas.height-Cortexdiam,canvas.width*(Left==-1),canvas.height-Cortexdiam+draw*4);
+			ctx.lineTo(canvas.width*(Left==-1),canvas.height);
+			ctx.fill();
+			ctx.closePath();
+		}
+		//---optic radiation
+		for(var draw=0;draw<=1;draw++){
+			ctx.beginPath();
+			ctx.strokeStyle='rgb(0,0,0)'
+			ctx.fillStyle='rgb(0,'+((Left==1)*255)+','+((Left==-1)*255)+')';
+			ctx.moveTo(LGNx1-Left*20,LGNy1+10);
+			ctx.bezierCurveTo(LGNx1-Left*50,LGNy1,LGNx1-Left*80,LGNy1+10,LGNx1-Left*70,canvas.height-Cortexdiam+15);
+			if(draw){
+				ctx.moveTo(LGNx1-Left*20,canvas.height-Cortexdiam+20);
+			}else{
+				ctx.lineTo(LGNx1-Left*20,canvas.height-Cortexdiam+20);
+			}
+			ctx.bezierCurveTo(LGNx1-Left*70,LGNy1+30,LGNx1-Left*40,LGNy1+15,LGNx1-Left*20,LGNy1+20);
+			ctx.globalAlpha = draw*.7+.3;
+			if(draw){ctx.stroke()}else{ctx.fill()};
+			ctx.closePath();
+		}
+		//---ocular dominance columns
+		ctx.beginPath();
+		ctx.lineWidth=18+(ShowAmblyopia)*(Left*10);	//18/7
+		var colfront=(Left*ShowEyePathway==1)*255;
+
+		ctx.strokeStyle='rgb('+(colfront)+','+((Left==1)*(255-colfront)+colfront)+','+((Left==-1)*(255-colfront)+colfront)+')';
+		x1=canvas.width*(Left==-1);y1=canvas.height
+		ctx.moveTo(x1,y1);
+		ctx.quadraticCurveTo(x1+Left*20,y1-20,x1+Left*10,y1-100);
+		ctx.quadraticCurveTo(x1+Left*10,y1-130,x1+Left*40,y1-120);
+		ctx.quadraticCurveTo(x1+Left*30,y1-40,x1+Left*80,y1-70);
+		ctx.quadraticCurveTo(x1+Left*60,y1-100,x1+Left*70,y1-110);
+		ctx.moveTo(x1+Left*80,y1-70);
+		ctx.quadraticCurveTo(x1+Left*140,y1-10,x1+Left*110,y1+40);
+		ctx.quadraticCurveTo(x1+Left*2,y1-10,x1+Left*60,y1-40);
+		ctx.quadraticCurveTo(x1+Left*60,y1-10,x1+Left*40,y1-20);
+		ctx.moveTo(x1+Left*90,y1+20);
+		ctx.quadraticCurveTo(x1+Left*60,y1+15,x1+Left*95,y1-45);
+		ctx.moveTo(x1+Left*160,y1+20);
+		ctx.quadraticCurveTo(x1+Left*140,y1-60,x1+Left*105,y1-95);
+		ctx.moveTo(x1+Left*170,y1-40);
+		ctx.quadraticCurveTo(x1+Left*150,y1-120,x1+Left*105,y1-125);
+		ctx.stroke();
+		ctx.closePath();
+		//---ocular dominance columns-color 2
+		ctx.beginPath();
+		ctx.lineWidth=14-(ShowAmblyopia)*(Left*3);		//14/26
+		ctx.strokeStyle='rgb('+colback+','+((Left==1)*(255-colback)+colback)+','+((Left==-1)*(255-colback)+colback)+')';
+		//if(ShowEyePathway!=0){ctx.strokeStyle='rgb('+((Left*ShowEyePathway==-1)*255)+','+((Left*ShowEyePathway==-1)*255)+','+((Left*ShowEyePathway==-1)*255)+')'}
+		ctx.moveTo(x1+Left*170,y1+10);
+		ctx.quadraticCurveTo(x1+Left*150,y1-120,x1+Left*65,y1-125);
+		ctx.moveTo(x1+Left*20,y1+40);
+		ctx.quadraticCurveTo(x1+Left*30,y1-50,x1+Left*25,y1-110);
+		ctx.moveTo(x1+Left*30,y1-40);
+		ctx.quadraticCurveTo(x1+Left*30,y1-40,x1+Left*75,y1-52);
+		ctx.quadraticCurveTo(x1+Left*80,y1-15,x1+Left*55,y1-25);
+		ctx.stroke();
+		ctx.closePath();
+
+		ctx.globalAlpha =1;
+	}
+	
+	//---draws the visual deficits
+	function DrawDeficits(DeficitQuiz){
+		var DefSpaceY=Deficitcanvas.height/5;
+		var DefW=Deficitcanvas.width/2;
+		var DefTop=20;
+		for(var defNum=0;defNum<=4*(1-DeficitQuiz);defNum++){//---deficits types
+			for(var Left=-1;Left<=1;Left+=2){//---left and right eyes
+				//---shape
+				DFTctx.beginPath();
+				DFTctx.fillStyle='rgb(200,200,200)';
+				DFTctx.lineWidth=1;
+				DFTctx.strokeStyle="black";
+				DFTctx.setLineDash([]);
+				DFTctx.moveTo(DefW+Left*10,DefSpaceY*defNum+20+DefTop);
+				DFTctx.bezierCurveTo(DefW+Left*20,DefSpaceY*defNum+5+DefTop,DefW+Left*40,DefSpaceY*defNum+5+DefTop,DefW+Left*DefW/2+10,DefSpaceY*defNum+5+DefTop);
+				DFTctx.bezierCurveTo(DefW+Left*DefW*.95,DefSpaceY*defNum+5+DefTop,DefW+Left*DefW*.95,DefSpaceY*defNum+30+DefTop,DefW+Left*DefW*.92,DefSpaceY*defNum+40+DefTop);
+				DFTctx.bezierCurveTo(DefW+Left*DefW*.85,DefSpaceY*defNum+65+DefTop,DefW+Left*DefW*.7,DefSpaceY*(defNum+.6)+DefTop,DefW+Left*50,DefSpaceY*(defNum+.6)+DefTop);
+				DFTctx.bezierCurveTo(DefW+Left*35,DefSpaceY*(defNum+.6)+DefTop,DefW+Left*40,DefSpaceY*defNum+60+DefTop,DefW+Left*15,DefSpaceY*defNum+40+DefTop);
+				DFTctx.bezierCurveTo(DefW+Left*10,DefSpaceY*defNum+30+DefTop,DefW+Left*10,DefSpaceY*defNum+30+DefTop,DefW+Left*10,DefSpaceY*defNum+20+DefTop);
+				DFTctx.fill();
+				DFTctx.stroke();
+				DFTctx.closePath();
+				//---data (used for deficits)
+				var DefType=defNum+1;
+				if(DeficitQuiz){ DefType=DeficitNumber+1};
+				var imgData = DFTctx.getImageData(DefW*(Left==1), DefSpaceY*defNum+DefTop, DefW, DefSpaceY);
+				for (var i = 0; i < imgData.data.length; i += 4) {
+					if(imgData.data[i]!=255){	//---not white
+						if(DefType==1){		//---optic nerve - full eye
+							if(Left==1){
+								imgData.data[i]=64;
+							}
+						}
+						if(DefType==2){		//---chiasm - temporal
+							if((((Left==1)*(i%(DefW*4)>DefW*1.6)))||(((Left==-1)*(i%(DefW*4)<DefW*2.4)))){
+								imgData.data[i]=64;
+							}
+						}
+						if(DefType>=3){		//---one eye
+							if((((Left==1)*(i%(DefW*4)<DefW*1.6)))||(((Left==-1)*(i%(DefW*4)<DefW*2.4)))){
+								if((DefType!=4)||(i<imgData.data.length/4)){
+									imgData.data[i]=64;
+								}
+							}
+						}
+						
+					}
+				}
+				DFTctx.putImageData(imgData, DefW*(Left==1), DefSpaceY*defNum+DefTop);
+				if(DefType==5){		//---macular sparing
+					DFTctx.beginPath();
+					DFTctx.fillStyle='rgb(200,200,200)';
+					DFTctx.arc(DefW+Left*40,DefSpaceY*defNum+30+DefTop,10,0,2*Math.PI);
+					DFTctx.fill();
+					DFTctx.closePath();
+				}
+				//---vertical and horizontal lines
+				DFTctx.beginPath();
+				DFTctx.setLineDash([1, 5]);
+				DFTctx.strokeStyle='rgb(254,254,254)';	//---almost white
+				DFTctx.lineWidth=3;
+				DFTctx.moveTo(DefW+Left*15,DefSpaceY*defNum+30+DefTop);
+				DFTctx.lineTo(DefW+Left*DefW*.92,DefSpaceY*defNum+30+DefTop);
+				DFTctx.moveTo(DefW+Left*40,DefSpaceY*defNum+10+DefTop);
+				DFTctx.lineTo(DefW+Left*40,DefSpaceY*(defNum+.52)+DefTop);
+				DFTctx.stroke();
+				DFTctx.closePath();
+			}
+			if(DeficitQuiz==0){
+				//---text
+				DFTctx.beginPath();
+				DFTctx.fillStyle='rgb(0,0,0)'
+				DFTctx.textAlign = "left";
+				DFTctx.font = "12px Arial";
+				DFTctx.fillText(DeficitLocation[defNum],2,DefSpaceY*defNum+22);
+				DFTctx.closePath();
+				//---letter
+				DeficitLetter(DFTctx,DefW,DefSpaceY*defNum+10,DeficitMark[defNum],1);
+			}
+		}
+	}
+	//---put letter next to a deficit
+	function DeficitLetter(ctx,posX,posY,Letter,Fill){
+		ctx.beginPath();
+		ctx.strokeStyle='rgb(0,0,0)';
+		ctx.setLineDash([]);
+		ctx.lineWidth=1;
+		ctx.fillStyle='rgb('+Fill*255+',0,0)';
+		ctx.arc(posX,posY,10,0,2*Math.PI);
+		ctx.fill();
+		ctx.stroke();
+		ctx.closePath();
+		ctx.beginPath();
+		ctx.fillStyle='rgb(255,255,255)';
+		ctx.textAlign = "center";
+		ctx.font = "15px Arial";
+		ctx.fillText(Letter,posX,posY+5);
+		ctx.closePath();
+	}
+	//---main drawing function
+	function Circuit(){
+		DrawPath(1);
+		DrawPath(-1);
+		//---eye text
+		ctx.beginPath();
+		ctx.fillStyle='rgb(0,0,0)'
+		ctx.textAlign = "center";
+		ctx.font = "12px Arial";
+		ctx.fillText("Left Eye",canvas.width/2-EyeDistPos-60,EyeTopPos-EyeSize);
+		ctx.fillText("Right Eye",canvas.width/2+EyeDistPos+60,EyeTopPos-EyeSize);
+		ctx.fillText("Left Optic Nerve",canvas.width/2-EyeDistPos-20,EyeTopPos+EyeSize+30);
+		ctx.fillText("Right Optic Nerve",canvas.width/2+EyeDistPos+20,EyeTopPos+EyeSize+30);
+		ctx.fillText("Left Optic Tract",canvas.width/2-EyeDistPos-20,EyeTopPos+EyeSize+90);
+		ctx.fillText("Right Optic Tract",canvas.width/2+EyeDistPos+20,EyeTopPos+EyeSize+90);
+		ctx.fillText("Optic Chiasm",canvas.width/2,EyeTopPos+EyeSize+40);
+		ctx.fillText("Thalamus (LGN)",canvas.width/2,EyeTopPos+EyeSize+140);
+		ctx.fillText("Cortex (V1)",canvas.width/2,EyeTopPos+EyeSize+240);
+		ctx.closePath();
+		for(var draw=-1;draw<=1;draw+=2){
+			ctx.beginPath();
+			ctx.translate(canvas.width/2+160*draw,EyeTopPos+EyeSize+170);
+			ctx.rotate(draw*0.4 * Math.PI );
+			ctx.fillText("Optic Radiations",0,0);
+			ctx.closePath();
+			//ctx.beginPath();
+			ctx.rotate(-draw*0.4 * Math.PI );
+			ctx.translate(-(canvas.width/2+160*draw),-(EyeTopPos+EyeSize+170));
+			//ctx.closePath();
+		}
+		//---deficits
+		DeficitNumber=Math.floor(Math.random()*5);//---gets a random deficit
+		if((ShowDeficits)||(ShowDeficitsQuiz)){
+			for(draw=0;draw<5;draw++){
+				DeficitLetter(ctx,canvas.width/2+DeficitX[draw],EyeTopPos+EyeSize+DeficitY[draw],DeficitMark[draw],ShowDeficits);
+			}
+			DrawDeficits(ShowDeficitsQuiz)				//---show all deficits/quiz
+		}
+		//ctx.closePath();
+		<!-- //---photoreceptor text -->
+		<!-- ctx.beginPath(); -->
+		<!-- ctx.fillStyle='rgb(0,0,0)' -->
+		<!-- ctx.strokeStyle=ctx.fillStyle; -->
+		<!-- ctx.textAlign = "center"; -->
+		<!-- ctx.font = "12px Arial"; -->
+		<!-- ctx.fillText("Photoreceptors",canvas.width/2,PhTop); -->
+		<!-- ctx.lineCap="round"; -->
+		<!-- ctx.closePath(); -->
+		<!-- //---photoreceptors schematic -->
+		<!-- PhSpace=5; -->
+		<!-- ctx.lineWidth=1; -->
+		<!-- ctx.setLineDash([]); -->
+		<!-- ctx.strokeStyle='rgb(0,0,0)'; -->
+		<!-- for( var ph=PhLeft;ph<canvas.width-PhLeft;ph+=PhSpace){ -->
+			<!-- ctx.beginPath(); -->
+			<!-- ctx.strokeStyle='black'; -->
+			<!-- ctx.moveTo(ph,PhTop+5); -->
+			<!-- ctx.lineTo(ph,PhTop+15); -->
+			<!-- ctx.stroke(); -->
+			<!-- ctx.closePath(); -->
+		<!-- } -->
+		<!-- //---bipolar text -->
+		<!-- PhTop+=30; -->
+		<!-- ctx.beginPath(); -->
+		<!-- ctx.fillStyle='rgb(0,0,0)' -->
+		<!-- ctx.strokeStyle=ctx.fillStyle; -->
+		<!-- ctx.textAlign = "center"; -->
+		<!-- ctx.font = "12px Arial"; -->
+		<!-- ctx.fillText("Bipolar cells",canvas.width/2,PhTop); -->
+		<!-- ctx.lineCap="round"; -->
+		<!-- ctx.closePath(); -->
+		<!-- //---OFF/ON bipolar cells -->
+		<!-- var BipSoma=PhTop+15; -->
+		<!-- var BipAxon=10 -->
+		<!-- ctx.beginPath(); -->
+		<!-- ctx.fillStyle='rgb(0,0,0)' -->
+		<!-- ctx.strokeStyle=ctx.fillStyle; -->
+		<!-- ctx.textAlign = "right"; -->
+		<!-- ctx.font = "12px Arial"; -->
+		<!-- //---schematic plot -->
+		<!-- ctx.closePath(); -->
+		<!-- var BipSpace=30; -->
+		<!-- for( var ph=PhLeft;ph<canvas.width-PhLeft;ph+=BipSpace){ -->
+			<!-- for(var biptype=0;biptype<=1;biptype++){ -->
+				<!-- //---dends/axon			 -->
+				<!-- ctx.strokeStyle='rgb(128,128,128)' -->
+				<!-- ctx.lineWidth=1; -->
+				<!-- ctx.setLineDash([]); -->
+				<!-- ctx.beginPath(); -->
+				<!-- ctx.moveTo(ph+BipSpace*biptype/2,PhTop+5); -->
+				<!-- ctx.lineTo(ph+BipSpace*biptype/2,BipSoma); -->
+				<!-- ctx.lineTo(ph+BipSpace*biptype/2,BipSoma+BipAxon); -->
+				<!-- ctx.stroke(); -->
+				<!-- ctx.closePath(); -->
+				<!-- //---soma -->
+				<!-- ctx.beginPath(); -->
+				<!-- ctx.fillStyle='rgb('+(127*biptype+128)+','+(127*biptype+128)+','+(127*biptype+128)+')' -->
+				<!-- ctx.lineWidth=2; -->
+				<!-- ctx.setLineDash([]); -->
+				<!-- ctx.arc(ph+BipSpace*biptype/2,BipSoma,PhWidth+2,0,2*Math.PI); -->
+				<!-- ctx.stroke(); -->
+				<!-- ctx.fill(); -->
+				<!-- ctx.closePath(); -->
+				<!-- //---(+) -->
+				<!-- ctx.beginPath(); -->
+				<!-- ctx.strokeStyle='rgb('+(128*(1-biptype)+128)+','+(128*(1-biptype)+128)+','+(128*(1-biptype)+128)+')' -->
+				<!-- ctx.lineWidth=2; -->
+				<!-- ctx.moveTo(ph+BipSpace*biptype/2-3,BipSoma); -->
+				<!-- ctx.lineTo(ph+BipSpace*biptype/2+3,BipSoma); -->
+				<!-- ctx.moveTo(ph+BipSpace*biptype/2,BipSoma+3*biptype); -->
+				<!-- ctx.lineTo(ph+BipSpace*biptype/2,BipSoma-3*biptype); -->
+				<!-- ctx.stroke(); -->
+				<!-- ctx.closePath(); -->
+			<!-- } -->
+		<!-- } -->
+		<!-- //---ganglion -->
+		<!-- PhTop+=40; -->
+		<!-- ctx.beginPath(); -->
+		<!-- ctx.fillStyle='rgb(0,0,0)' -->
+		<!-- ctx.strokeStyle=ctx.fillStyle; -->
+		<!-- ctx.textAlign = "center"; -->
+		<!-- ctx.font = "12px Arial"; -->
+		<!-- ctx.fillText("Ganglion cells",canvas.width/2,PhTop); -->
+		<!-- ctx.lineCap="round"; -->
+		<!-- ctx.closePath(); -->
+		<!-- //---ganglion cell schematic -->
+		<!-- var GangDiamIN=8,GangDiamOUT=24,GangSomaPos=20,OpticNerve=PhTop+GangSomaPos+60; -->
+		<!-- var GangSur=0; -->
+		<!-- PhTop+=10; -->
+		<!-- for(var gangtype=-1;gangtype<=1;gangtype+=2){ -->
+			<!-- //---axon -->
+			<!-- ctx.beginPath(); -->
+			<!-- ctx.strokeStyle='rgb(0,0,0)' -->
+			<!-- ctx.setLineDash([2,2]); -->
+			<!-- ctx.lineWidth=1; -->
+			<!-- ctx.moveTo(canvas.width/2+gangtype*GangSomaPos*2,GangSomaPos+PhTop); -->
+			<!-- ctx.lineTo(canvas.width/2+gangtype*GangSomaPos*2,GangSomaPos+PhTop+GangDiamOUT+8); -->
+			<!-- ctx.lineTo(canvas.width/2-gangtype,GangSomaPos+PhTop+GangDiamOUT+8); -->
+			<!-- ctx.moveTo(canvas.width/2+gangtype*GangSomaPos/4,GangSomaPos+PhTop+GangDiamOUT+8); -->
+			<!-- ctx.lineTo(canvas.width/2+gangtype*GangSomaPos/4,OpticNerve); -->
+			<!-- ctx.stroke(); -->
+			<!-- ctx.closePath(); -->
+			<!-- //---RF outer -->
+			<!-- ctx.beginPath(); -->
+			<!-- ctx.strokeStyle='rgb(0,0,0)' -->
+			<!-- ctx.fillStyle='rgb('+(127*GangSur*(gangtype)+128)+','+(127*GangSur*(gangtype)+128)+','+(127*GangSur*(gangtype)+128)+')' -->
+			<!-- ctx.lineWidth=3; -->
+			<!-- ctx.setLineDash([]); -->
+			<!-- ctx.arc(canvas.width/2+gangtype*GangSomaPos*2,GangSomaPos+PhTop,GangDiamOUT,0,2*Math.PI); -->
+			<!-- ctx.stroke(); -->
+			<!-- ctx.fill(); -->
+			<!-- ctx.closePath(); -->
+			<!-- //---RF inner -->
+			<!-- ctx.beginPath(); -->
+			<!-- ctx.fillStyle='rgb('+(127*gangtype+128)+','+(127*gangtype+128)+','+(127*gangtype+128)+')' -->
+			<!-- ctx.lineWidth=2; -->
+			<!-- ctx.setLineDash([]); -->
+			<!-- ctx.arc(canvas.width/2+gangtype*GangSomaPos*2,GangSomaPos+PhTop,GangDiamIN,0,2*Math.PI); -->
+			<!-- ctx.stroke(); -->
+			<!-- ctx.fill(); -->
+			<!-- ctx.closePath(); -->
+			<!-- //---(+) -->
+			<!-- ctx.beginPath(); -->
+			<!-- ctx.strokeStyle='rgb(128,128,120)' -->
+			<!-- ctx.lineWidth=2; -->
+			<!-- ctx.moveTo(canvas.width/2+gangtype*GangSomaPos*2,GangSomaPos+PhTop-3*(gangtype>0)); -->
+			<!-- ctx.lineTo(canvas.width/2+gangtype*GangSomaPos*2,GangSomaPos+PhTop+3*(gangtype>0)); -->
+			<!-- ctx.moveTo(canvas.width/2+gangtype*GangSomaPos*2+3,GangSomaPos+PhTop); -->
+			<!-- ctx.lineTo(canvas.width/2+gangtype*GangSomaPos*2-3,GangSomaPos+PhTop); -->
+			<!-- ctx.stroke(); -->
+			<!-- ctx.closePath(); -->
+		<!-- } -->
+		<!-- var OpticNerveLength=60,LGNpos=OpticNerve+OpticNerveLength+25,LGNdiam=30; -->
+		<!-- //---LGN -->
+		<!-- ctx.beginPath(); -->
+		<!-- ctx.strokeStyle='rgb(0,0,0)' -->
+		<!-- ctx.fillStyle='rgb(222,222,222)' -->
+		<!-- ctx.lineWidth=1; -->
+		<!-- ctx.setLineDash([]); -->
+		<!-- ctx.arc(canvas.width/2,LGNpos+LGNdiam/2,LGNdiam,0,2*Math.PI); -->
+		<!-- ctx.fill(); -->
+		<!-- //ctx.stroke(); -->
+		<!-- ctx.closePath(); -->
+		<!-- //---optic nerve -->
+		<!-- ctx.beginPath(); -->
+		<!-- ctx.strokeStyle='rgb(0,0,0)' -->
+		<!-- ctx.fillStyle='rgb(255,255,255)' -->
+		<!-- ctx.lineWidth=1; -->
+		<!-- ctx.setLineDash([]); -->
+		<!-- ctx.moveTo(canvas.width/2,OpticNerve); -->
+		<!-- ctx.lineTo(canvas.width/2+15,OpticNerve+15); -->
+		<!-- ctx.lineTo(canvas.width/2+45,OpticNerve+20); -->
+		<!-- ctx.moveTo(canvas.width/2,OpticNerve+OpticNerveLength); -->
+		<!-- ctx.lineTo(canvas.width/2+15,OpticNerve+OpticNerveLength+15); -->
+		<!-- ctx.lineTo(canvas.width/2+45,OpticNerve+OpticNerveLength+20); -->
+		<!-- ctx.stroke(); -->
+		<!-- ctx.closePath(); -->
+		<!-- //---optic nerve/tract text -->
+		<!-- ctx.beginPath(); -->
+		<!-- ctx.fillStyle='rgb(0,0,0)' -->
+		<!-- ctx.textAlign = "left"; -->
+		<!-- ctx.font = "12px Arial"; -->
+		<!-- ctx.fillText("Optic nerve",canvas.width/2+49,OpticNerve+20+4); -->
+		<!-- ctx.fillText("Optic tract",canvas.width/2+49,OpticNerve+20+OpticNerveLength+4); -->
+		<!-- ctx.closePath(); -->
+		<!-- //---optic chiasm/LGN text -->
+		<!-- ctx.beginPath(); -->
+		<!-- ctx.fillStyle='rgb(0,0,0)' -->
+		<!-- ctx.textAlign = "right"; -->
+		<!-- ctx.fillText("Optic chiasm",canvas.width/2-100-4,OpticNerve+OpticNerveLength/2+4); -->
+		<!-- ctx.fillText("LGN (thalamus)",canvas.width/2-LGNdiam-4,LGNpos+LGNdiam/2+4); -->
+		<!-- ctx.closePath(); -->
+		<!-- //---axons -->
+		<!-- ctx.beginPath(); -->
+		<!-- ctx.strokeStyle='rgb(0,0,0)' -->
+		<!-- ctx.setLineDash([2,2]); -->
+		<!-- ctx.lineWidth=1; -->
+		<!-- //---right side -->
+		<!-- ctx.moveTo(canvas.width/2+GangSomaPos/4,OpticNerve); -->
+		<!-- ctx.lineTo(canvas.width/2+GangSomaPos/4,LGNpos); -->
+		<!-- //---left side+chiasm -->
+		<!-- ctx.moveTo(canvas.width/2-GangSomaPos/4,OpticNerve); -->
+		<!-- ctx.lineTo(canvas.width/2-GangSomaPos/4,OpticNerve+OpticNerveLength/3); -->
+		<!-- ctx.lineTo(canvas.width/2-GangSomaPos/4-100,OpticNerve+OpticNerveLength/3*2); -->
+		<!-- ctx.moveTo(canvas.width/2-GangSomaPos/4-100,OpticNerve+OpticNerveLength/3); -->
+		<!-- ctx.lineTo(canvas.width/2-GangSomaPos/4,OpticNerve+OpticNerveLength/3*2); -->
+		<!-- ctx.lineTo(canvas.width/2-GangSomaPos/4,LGNpos); -->
+
+		<!-- //ctx.lineTo(canvas.width/2+gangtype*GangSomaPos/4,GangSomaPos+PhTop+GangDiamOUT+8); -->
+		<!-- //ctx.lineTo(canvas.width/2+gangtype*GangSomaPos/4,OpticNerve); -->
+		<!-- ctx.stroke(); -->
+		<!-- ctx.closePath(); -->
+		<!-- //---LGN cells -->
+		<!-- var LGNSomaPos=7,LGNDiamOUT=10,LGNDiamIN=5; -->
+		<!-- for(var LGNtype=-1;LGNtype<=1;LGNtype+=2){ -->
+			<!-- //---RF outer -->
+			<!-- ctx.beginPath(); -->
+			<!-- ctx.strokeStyle='rgb(0,0,0)' -->
+			<!-- ctx.fillStyle='rgb('+(127*GangSur*(LGNtype)+128)+','+(127*GangSur*(LGNtype)+128)+','+(127*GangSur*(LGNtype)+128)+')' -->
+			<!-- ctx.lineWidth=3; -->
+			<!-- ctx.setLineDash([]); -->
+			<!-- ctx.arc(canvas.width/2+LGNtype*LGNSomaPos*2,LGNpos+LGNdiam/2,LGNDiamOUT,0,2*Math.PI); -->
+			<!-- ctx.stroke(); -->
+			<!-- ctx.fill(); -->
+			<!-- ctx.closePath(); -->
+			<!-- //---RF inner -->
+			<!-- ctx.beginPath(); -->
+			<!-- ctx.fillStyle='rgb('+(127*LGNtype+128)+','+(127*LGNtype+128)+','+(127*LGNtype+128)+')' -->
+			<!-- ctx.lineWidth=2; -->
+			<!-- ctx.setLineDash([]); -->
+			<!-- ctx.arc(canvas.width/2+LGNtype*LGNSomaPos*2,LGNpos+LGNdiam/2,LGNDiamIN,0,2*Math.PI); -->
+			<!-- ctx.stroke(); -->
+			<!-- ctx.fill(); -->
+			<!-- ctx.closePath(); -->
+			<!-- //---(+) -->
+			<!-- ctx.beginPath(); -->
+			<!-- ctx.strokeStyle='rgb(128,128,120)' -->
+			<!-- ctx.lineWidth=2; -->
+			<!-- ctx.moveTo(canvas.width/2+LGNtype*LGNSomaPos*2,LGNpos+LGNdiam/2-3*(LGNtype>0)); -->
+			<!-- ctx.lineTo(canvas.width/2+LGNtype*LGNSomaPos*2,LGNpos+LGNdiam/2+3*(LGNtype>0)); -->
+			<!-- ctx.moveTo(canvas.width/2+LGNtype*LGNSomaPos*2+3,LGNpos+LGNdiam/2); -->
+			<!-- ctx.lineTo(canvas.width/2+LGNtype*LGNSomaPos*2-3,LGNpos+LGNdiam/2); -->
+			<!-- ctx.stroke(); -->
+			<!-- ctx.closePath(); -->
+		<!-- } -->
+		<!-- var SimplePosY=LGNpos+100,SimpleSpaceX=66; -->
+		<!-- //---cortex -->
+		<!-- ctx.beginPath(); -->
+		<!-- ctx.fillStyle='rgb(222,222,222)' -->
+		<!-- ctx.lineWidth=1; -->
+		<!-- ctx.setLineDash([]); -->
+		<!-- ctx.arc(canvas.width/2,SimplePosY+550,550,0,2*Math.PI); -->
+		<!-- ctx.fill(); -->
+		<!-- ctx.closePath(); -->
+		<!-- SimplePosY+=50; -->
+		<!-- for(var SimplePosX=-2;SimplePosX<=2;SimplePosX++){ -->
+			<!-- MakeCorticalCell(2,canvas.width/2+SimpleSpaceX*SimplePosX,SimplePosY+SimplePosX*SimplePosX*4,Math.PI/3,SimplePosX,-1,1);//=*0 -->
+		<!-- } -->
+	}
+	//---draw a simple or a complex cell
+	function MakeCorticalCell(NumInputs,centerX,centerY,INAngle,INOffset,CenterType,SurroundType){
+		var INspace=14,INrad=6;
+		//---draw the circle around the RF
+		ctx.beginPath();
+		ctx.lineWidth=2;
+		ctx.setLineDash([4,4]);
+		ctx.strokeStyle='rgb(0,0,0)'
+		ctx.fillStyle='rgb(255,255,255)'
+		ctx.arc(centerX,centerY,INrad*6,0,2*Math.PI);
+		ctx.stroke();
+		ctx.fill();
+		ctx.closePath();
+
+		for(var numY=-NumInputs;numY<=NumInputs;numY++){
+			for(var numX=-NumInputs;numX<=NumInputs;numX++){
+				var posY=numY*INspace*.86;
+				var posX=(numX+(numY%2)/2)*INspace;
+				if((posY*posY+posX*posX)<=(NumInputs*INspace*NumInputs*INspace)){//(NumInputs*INspace*0)^2){//---within the RF
+							//---(input cell)
+					ctx.beginPath();
+					ctx.strokeStyle='rgb(0,0,0)'
+					ctx.fillStyle='rgb('+(127*1+128)+','+(127*1+128)+','+(127*1+128)+')'
+					//---find the activation of the input
+					var offsetY=INOffset*Math.cos(INAngle)*INspace*.86;
+					var offsetX=-INOffset*Math.sin(INAngle)*INspace;
+					var PointAngle=Math.atan2(posY,posX)+INAngle;
+					var PointDist=Math.sqrt(posY*posY+posX*posX);
+					var Surround=Math.abs(numY-INOffset)==1;
+					if(Surround){
+						ctx.fillStyle='rgb('+(32*SurroundType+128)+','+(32*SurroundType+128)+','+(32*SurroundType+128)+')'
+					}
+					var Center=Math.abs(numY-INOffset)==0;
+					if(Center){
+						ctx.fillStyle='rgb('+(127*CenterType+128)+','+(127*CenterType+128)+','+(127*CenterType+128)+')'
+					}
+					ctx.lineWidth=1.5;
+					ctx.setLineDash([]);
+					var DrawX=Math.cos(PointAngle)*PointDist+centerX;
+					var DrawY=Math.sin(PointAngle)*PointDist+centerY;
+					ctx.arc(DrawX,DrawY,INrad,0,2*Math.PI);
+					ctx.stroke();
+					ctx.fill();
+					ctx.closePath();
+					if(Center+Surround>0)	{//---center or surround region
+						ctx.beginPath();
+						ctx.strokeStyle='rgb(128,128,128)'
+						ctx.lineWidth=2;
+						ctx.moveTo(DrawX,DrawY-3*(CenterType*Center+Surround*SurroundType>0));
+						ctx.lineTo(DrawX,DrawY+3*(CenterType*Center+Surround*SurroundType>0));
+						ctx.moveTo(DrawX+3,DrawY);
+						ctx.lineTo(DrawX-3,DrawY);
+						ctx.stroke();
+						ctx.closePath();
+					}
+				}
+			}
+		}
+
+	}
+	//---converstion of user selection of synaptic stengths
+	function ComputeRetinaSyn(){
+		//---outer retina
+		Ph_Hr_g=User_Ph_Hz.value/20//Math.exp(User_Ph_Hz.value/40)*4*(User_Ph_Hz.value>-100)
+		Hr_Ph_g=User_Hz_Ph.value/20//Math.exp(User_Hz_Ph.value/40)/8*(User_Hz_Ph.value>-100)
+		Ph_Bip_g=User_Ph_Bip.value/10//Math.exp(User_Ph_Bip.value/20)/5*(User_Ph_Bip.value>-100)
+
+	}
+	//---computation of light responses
+	function ComputeActivation(){
+		ComputeRetinaSyn()
+		var exc,inh;
+		var numsteps=10;
+		Ph_Vm.fill(0);
+		HrRL_Vm.fill(0);
+		HrLR_Vm.fill(0);
+		OFFB_Vm.fill(0);
+		ONB_Vm.fill(0);
+		GC_Vm=0;
+		
+		PhThresh=-30
+		for(var steps=0;steps<numsteps;steps++){
+			//---activation of horizontal cells
+			if(PhNum>1){
+				for( var ph=0;ph<PhNum-1;ph++){
+					HrLR_Vm[ph]=Ph_Hr_g*Ph_Vm[ph]
+					HrRL_Vm[ph]=Ph_Hr_g*Ph_Vm[ph+1]
+				}
+			}
+			//---horizontal to ph feedback
+			for(var ph=0;ph<PhNum;ph++){
+				exc=-(stimuli[ph]-0.5)*60
+				inh=0
+				if(PhNum>1){	//---otherwise no horizontal cells
+					if(ph>0){inh=Hr_Ph_g*HrLR_Vm[ph-1]}
+					if(ph<PhNum-1){	inh+=Hr_Ph_g*HrRL_Vm[ph]}
+				}
+				Ph_Vm[ph]=Math.min(20,Math.max(-20,exc-2*inh))
+			}
+			
+					//---bipolar cells activation
+			for(var ph=0;ph<PhNum;ph++){
+			//Ph_Bip_g=1
+				OFFB_Vm[ph]=Ph_Bip_g*Ph_Vm[ph]*(Ph_Vm[ph]>0)
+				ONB_Vm[ph]=-Ph_Bip_g*Ph_Vm[ph]*(Ph_Vm[ph]<0)
+			}
+
+		}
+	}
+	//---computation of the resulting image
+	function NewImage(){
+		var numsteps=5,exc=0,inh=0;
+		var OrigImage=CreateImageArray(OrigImage_width,OrigImage_height);
+		var PhImage=CreateImageArray(OrigImage_width,OrigImage_height);
+		var HzImage=CreateImageArray(OrigImage_width,OrigImage_height);
+		var ONBipImage=CreateImageArray(OrigImage_width,OrigImage_height);
+		var OFFBipImage=CreateImageArray(OrigImage_width,OrigImage_height);
+
+		//---original imge and photoreceptors
+		var imgData=ImgCtx.getImageData(OIleft,OItop,OrigImage_width,OrigImage_height);
+		for(var i=0;i<OrigImage_width;i++){
+			for(var j=0;j<OrigImage_height;j++){
+				OrigImage[i][j]=imgData.data[(i+j*OrigImage_width)*4]-128;
+				PhImage[i][j]=-OrigImage[i][j]/4//Math.max(-128,Math.min(128,-OrigImage[i][j]/1));
+			}
+		}
+		//---computation
+		var HorizIn=4,HorizInAdj=(HorizIn*2+1)*(HorizIn*2+1)/10;
+		for(var steps=0;steps<numsteps;steps++){
+			//if(PhNum>1){	//---otherwise no horizontal cells
+				for(var i=0;i<OrigImage_width;i++){
+					for(var j=0;j<OrigImage_height;j++){
+						//---horizontal cells
+						HzImage[i][j]=0
+						for(var hi=-HorizIn;hi<=HorizIn;hi++){
+							for(var hj=-HorizIn;hj<=HorizIn;hj++){
+								var iloc=Math.min(OrigImage_width-1,Math.max(0,i+hi));
+								var jloc=Math.min(OrigImage_height-1,Math.max(0,j+hj));
+								if((hi!=0)&&(hj!=0)){HzImage[i][j]+=PhImage[iloc][jloc]*Ph_Hr_g/HorizInAdj}
+							}
+						}
+					}
+				}
+				
+			//}
+			//---photoreceptors
+			for(var i=0;i<OrigImage_width;i++){
+				for(var j=0;j<OrigImage_height;j++){
+					inh=0
+					//if(PhNum>1){	//---otherwise no horizontal cells
+						inh+=HzImage[i][j]*Hr_Ph_g
+					//}
+					//---Photoreceptos
+					exc=-(OrigImage[i][j])
+					PhImage[i][j]=exc-inh
+				}
+			}
+		}
+		//---photoreceptors
+		var minval=255,maxval=0;
+		for(var i=0;i<OrigImage_width;i++){
+			for(var j=0;j<OrigImage_height;j++){
+				minval=Math.min(PhImage[i][j],minval)
+				maxval=Math.max(PhImage[i][j],maxval)
+			}
+		}
+		for(var i=0;i<OrigImage_width;i++){
+			for(var j=0;j<OrigImage_height;j++){
+				SetColor(PhImage[i][j],Math.max(maxval,Math.abs(minval)),0)
+				imgData.data[(i+j*OrigImage_width)*4]=r
+				imgData.data[(i+j*OrigImage_width)*4+1]=g
+				imgData.data[(i+j*OrigImage_width)*4+2]=b
+			}
+		}
+		ImgCtx.putImageData(imgData,OIleft,OrigImage_height+OItop*2);
+		//---horizontal
+		var minval=255,maxval=0;
+		for(var i=0;i<OrigImage_width;i++){
+			for(var j=0;j<OrigImage_height;j++){
+				minval=Math.min(HzImage[i][j],minval)
+				maxval=Math.max(HzImage[i][j],maxval)
+			}
+		}
+		for(var i=0;i<OrigImage_width;i++){
+			for(var j=0;j<OrigImage_height;j++){
+				SetColor(HzImage[i][j],Math.max(maxval,Math.abs(minval)),0)
+				imgData.data[(i+j*OrigImage_width)*4]=r
+				imgData.data[(i+j*OrigImage_width)*4+1]=g
+				imgData.data[(i+j*OrigImage_width)*4+2]=b
+			}
+		}
+		ImgCtx.putImageData(imgData,OIleft*2+OrigImage_width,OrigImage_height+OItop*2);
+		
+		//---bipolar/amacrine  cells activation - not part of the loop as are only excited
+		for(var i=0;i<OrigImage_width;i++){
+			for(var j=0;j<OrigImage_height;j++){
+				OFFBipImage[i][j]=(PhImage[i][j]>0)*Ph_Bip_g*(PhImage[i][j])
+				ONBipImage[i][j]=(PhImage[i][j]<0)*Ph_Bip_g*(-PhImage[i][j])
+//				ONACImage[i][j]=ONBipImage[i][j]*Bip_AC_g;
+			}
+		}
+		<!-- //---off bipolar -->
+		for(var i=0;i<OrigImage_width;i++){
+			for(var j=0;j<OrigImage_height;j++){
+				SetColor(OFFBipImage[i][j],30,0)
+				imgData.data[(i+j*OrigImage_width)*4]=r
+				imgData.data[(i+j*OrigImage_width)*4+1]=g
+				imgData.data[(i+j*OrigImage_width)*4+2]=b
+			}
+		}
+		ImgCtx.putImageData(imgData,OIleft,OrigImage_height*2+OItop*3);
+		//---on bipolar
+		for(var i=0;i<OrigImage_width;i++){
+			for(var j=0;j<OrigImage_height;j++){
+				SetColor(ONBipImage[i][j],30,0)
+				imgData.data[(i+j*OrigImage_width)*4]=r
+				imgData.data[(i+j*OrigImage_width)*4+1]=g
+				imgData.data[(i+j*OrigImage_width)*4+2]=b
+			}
+		}
+		ImgCtx.putImageData(imgData,OIleft*2+OrigImage_width,OrigImage_height*2+OItop*3);
+		<!-- //---on amacrine -->
+		<!-- for(var i=0;i<OrigImage_width;i++){ -->
+			<!-- for(var j=0;j<OrigImage_height;j++){ -->
+				<!-- SetColor(ONACImage[i][j],30,0) -->
+				<!-- imgData.data[(i+j*OrigImage_width)*4]=r -->
+				<!-- imgData.data[(i+j*OrigImage_width)*4+1]=g -->
+				<!-- imgData.data[(i+j*OrigImage_width)*4+2]=b -->
+			<!-- } -->
+		<!-- } -->
+		<!-- ImgCtx.putImageData(imgData,OIleft*2+OrigImage_width,OrigImage_height*3+OItop*4); -->
+		<!-- var CenterSpan=Math.round(User_G_C_Num.value/2) -->
+		<!-- var NumSpikes=0 -->
+		<!-- for(var i=1;i<OrigImage_width/PhNum-2;i++){ -->
+			<!-- for(var j=1;j<OrigImage_width/PhNum-2;j++){ -->
+				<!-- exc=0 -->
+				<!-- inh=0 -->
+				<!-- var iloc=i*PhNum -->
+				<!-- var jloc=j*PhNum -->
+				<!-- var GangCAdj=CenterSpan*CenterSpan; -->
+				<!-- var GangSAdj=(PhNum*PhNum/2-GangCAdj); -->
+				<!-- for(var gi=0;gi<PhNum;gi++){ -->
+					<!-- for(var gj=0;gj<PhNum;gj++){ -->
+						<!-- if((iloc+gi>=0)&&(iloc+gi<OrigImage_width)&&(jloc+gj>=0)&&(jloc+gj<OrigImage_width)){ -->
+							<!-- if( (gi>=PhNum/2-CenterSpan)&&(gi<=PhNum/2+CenterSpan)&&(gj>=PhNum/2-CenterSpan)&&(gj<=PhNum/2+CenterSpan) ){	//---center -->
+								<!-- exc+=ONBipImage[iloc+gi][jloc+gj]*ONBip_GC_g/GangCAdj -->
+								<!-- exc+=OFFBipImage[iloc+gi][jloc+gj]*OFFBip_GC_g/GangCAdj -->
+								<!-- inh+=ONACImage[iloc+gi][jloc+gj]*A_GC_g/GangCAdj -->
+							<!-- }else{																			//---surround -->
+								<!-- exc+=ONBipImage[iloc+gi][jloc+gj]*ONBip_GS_g/GangSAdj -->
+								<!-- exc+=OFFBipImage[iloc+gi][jloc+gj]*OFFBip_GS_g/GangSAdj -->
+								<!-- inh+=ONACImage[iloc+gi][jloc+gj]*A_GS_g/GangSAdj -->
+							<!-- } -->
+						<!-- } -->
+					<!-- } -->
+				<!-- } -->
+				<!-- //GangImage[i][j]=exc-inh -->
+				<!-- NumSpikes+=((exc-inh)>=15) -->
+				<!-- ImgCtx.beginPath(); -->
+				<!-- //ImgCtx.fillStyle=SetColor(exc-inh,15,1) -->
+				<!-- ImgCtx.fillStyle='rgb('+((exc-inh)>=15)*255+',0,0)' -->
+				<!-- ImgCtx.rect(120+iloc,20+jloc,PhNum,PhNum); -->
+				<!-- ImgCtx.fill(); -->
+				<!-- ImgCtx.closePath(); -->
+			<!-- } -->
+		<!-- }//---done computing -->
+		//---report
+		//ImgCtx.clearRect(0, OIleft*3+OItop*4, OrigImage_width, OrigImage_height);			//---erase the canvas
+		<!-- ImgCtx.beginPath(); -->
+		<!-- ImgCtx.fillStyle='rgb(200,200,200)'; -->
+		<!-- ImgCtx.strokeStyle='rgb(0,0,0)'; -->
+		<!-- ImgCtx.lineWidth=0; -->
+		<!-- ImgCtx.rect(OIleft*1,OrigImage_height*3+OItop*4-15, OrigImage_width, OrigImage_height+15); -->
+		<!-- ImgCtx.stroke(); -->
+		<!-- ImgCtx.fill(); -->
+		<!-- ImgCtx.beginPath(); -->
+		<!-- ImgCtx.fillStyle='rgb(128,128,128)'; -->
+		<!-- ImgCtx.rect(OIleft*1,OrigImage_height*3+OItop*4-15, OrigImage_width, 14); -->
+		<!-- ImgCtx.stroke(); -->
+		<!-- ImgCtx.fill(); -->
+		<!-- ImgCtx.closePath(); -->
+		<!-- ImgCtx.beginPath(); -->
+		<!-- ImgCtx.fillStyle='rgb(255,255,255)' -->
+		<!-- ImgCtx.strokeStyle=ctx.fillStyle; -->
+		<!-- ImgCtx.textAlign = "center"; -->
+		<!-- ImgCtx.font = "11px Arial"; -->
+		<!-- ImgCtx.fillText("Report",OIleft+OrigImage_width*0.5,OrigImage_height*3+OItop*4-5); -->
+		<!-- ImgCtx.fillStyle='rgb(0,0,0)' -->
+		<!-- ImgCtx.textAlign = "left"; -->
+		<!-- ImgCtx.fillText("Input=10,000px",OIleft+2,OrigImage_height*3+OItop*4+20); -->
+		<!-- ImgCtx.fillText(Math.floor(10000/PhNum/PhNum)+" Ganglion cells",OIleft+2,OrigImage_height*3+OItop*4+35); -->
+		<!-- ImgCtx.fillText("Compression="+Math.floor(100/PhNum/PhNum)+"%",OIleft+2,OrigImage_height*3+OItop*4+50); -->
+		<!-- ImgCtx.fillText("#Spikes="+NumSpikes,OIleft+2,OrigImage_height*3+OItop*4+65); -->
+		<!-- ImgCtx.fillText("Energy="+Math.round(NumSpikes/100)+"%",OIleft+2,OrigImage_height*3+OItop*4+80); -->
+
+	}
+	//---computes and plots retinal elements
+	function DrawCanvas(doInit){
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		DFTctx.clearRect(0, 0, Deficitcanvas.width, Deficitcanvas.height);
+
+		//if(doInit){Init()}
+		//ComputeActivation();
+		//NewImage();
+		Circuit();
+	}
+	canvas.onclick= function(){
+		ShowEyePathway=0;
+		//---check the the user clicked on an eye
+		for(var WhichEye=-1;WhichEye<=1;WhichEye++){
+			if( Math.pow(event.offsetX-(canvas.width/2-WhichEye*EyeDistPos),2)<EyeSize*EyeSize){
+				if( Math.pow(event.offsetY-EyeTopPos,2)<EyeSize*EyeSize){
+					ShowEyePathway=WhichEye*(ShowAmblyopia==0);
+				}
+			}
+		}
+		if(ShowDeficitsQuiz){	//---check if the click was on deficit markers
+			DFTctx.clearRect(0, 0, Deficitcanvas.width, 20);
+
+			var UserDeficit=-1
+			for(var draw=0;draw<5;draw++){
+				if( Math.pow(event.offsetX-(canvas.width/2+DeficitX[draw]),2)<100){
+					if( Math.pow(event.offsetY-(EyeTopPos+EyeSize+DeficitY[draw]),2)<100){
+						UserDeficit=draw;
+					}
+				}
+			}
+			if(UserDeficit>-1){	//---user selection
+				DeficitLetter(ctx,canvas.width/2+DeficitX[UserDeficit],EyeTopPos+EyeSize+DeficitY[UserDeficit],DeficitMark[UserDeficit],1);
+				DFTctx.beginPath();
+				DFTctx.fillStyle='rgb('+(UserDeficit!=DeficitNumber)*255+','+(UserDeficit==DeficitNumber)*255+',0)'
+				DFTctx.textAlign = "center";
+				DFTctx.font = "16px Arial";
+				if(UserDeficit==DeficitNumber){
+					DFTctx.fillText('Correct! '+DeficitLocation[UserDeficit],Deficitcanvas.width/2,15);
+				}else{
+					DFTctx.fillText('Wrong',Deficitcanvas.width/2,15);
+				}
+				DFTctx.closePath();
+			}
+		}else{
+			DrawCanvas(0);
+		}
+		
+	};
+	<!-- ImageCanvas.onclick= function(){ -->
+		<!-- ShowImage++; -->
+		<!-- if(ShowImage>4){ShowImage=1} -->
+		<!-- DrawCanvas(0); -->
+	<!-- } -->
+	//var User_Ph_Num = document.getElementById("Ph_Num");
+	var User_Ph_Hz = document.getElementById("Ph_Hz");
+	var User_Hz_Ph = document.getElementById("Hz_Ph");
+	var User_Ph_Bip = document.getElementById("Ph_Bip");
+	var User_Bip_AC = document.getElementById("Bip_AC");
+	var User_G_C_Num = document.getElementById("G_C_Num");
+	var User_ONBip_GC = document.getElementById("ONBip_GC");
+	var User_OFFBip_GC = document.getElementById("OFFBip_GC");
+	var User_ONBip_GS = document.getElementById("ONBip_GS");
+	var User_OFFBip_GS = document.getElementById("OFFBip_GS");
+	var User_A_GC = document.getElementById("A_GC");
+	var User_A_GS = document.getElementById("A_GS");
+	var ONCentersmall = document.getElementById("ONCentersmall");
+	var ONCenterlarge = document.getElementById("ONCenterlarge");
+	var OnFoveal = document.getElementById("OnFoveal");
+	
+	var Control = document.getElementById("Control");
+	var Amblyopia = document.getElementById("Amblyopia");
+	var AmblyopiaTreatment = document.getElementById("AmblyopiaTreatment");
+	var VisualDeficits = document.getElementById("VisualDeficits");
+	var VisualDeficitsQuiz = document.getElementById("VisualDeficitsQuiz");
+
+	DrawCanvas(0)
+	//User_Ph_Num.oninput = function() {DrawCanvas(1)}
+	<!-- User_Ph_Hz.oninput = function() {DrawCanvas(0)} -->
+	<!-- User_Hz_Ph.oninput = function() {DrawCanvas(0)} -->
+	<!-- User_Ph_Bip.oninput = function() {DrawCanvas(0)} -->
+	<!-- User_Bip_AC.oninput = function() {DrawCanvas(0)} -->
+	<!-- User_G_C_Num.oninput = function() {DrawCanvas(0)} -->
+	<!-- User_ONBip_GC.oninput = function() {DrawCanvas(0)} -->
+	<!-- User_OFFBip_GC.oninput = function() {DrawCanvas(0)} -->
+	<!-- User_ONBip_GS.oninput = function() {DrawCanvas(0)} -->
+	<!-- User_OFFBip_GS.oninput = function() {DrawCanvas(0)} -->
+	<!-- User_A_GC.oninput = function() {DrawCanvas(0)} -->
+	<!-- User_A_GS.oninput = function() {DrawCanvas(0)} -->
+	Amblyopia.onclick = function() {
+		ShowAmblyopia=1;
+		ShowAmblyopiaTreatment=0;
+		ShowDeficits=0;
+		ShowDeficitsQuiz=0;
+		DrawCanvas(1)
+	}
+	AmblyopiaTreatment.onclick = function() {
+		ShowAmblyopiaTreatment=1;
+		ShowAmblyopia=0;
+		ShowEyePathway=0;
+		ShowDeficits=0;
+		ShowDeficitsQuiz=0;
+		DrawCanvas(1)
+	}
+	Control.onclick = function() {
+		ShowAmblyopiaTreatment=0;
+		ShowAmblyopia=0;
+		ShowEyePathway=0;
+		ShowDeficits=0;
+		ShowDeficitsQuiz=0;
+		DrawCanvas(1)
+	}
+	VisualDeficits.onclick = function() {
+		ShowAmblyopiaTreatment=0;
+		ShowAmblyopia=0;
+		ShowEyePathway=0;
+		ShowDeficits=1;
+		ShowDeficitsQuiz=0;
+		DrawCanvas(1)
+	}
+	VisualDeficitsQuiz.onclick = function() {
+		ShowAmblyopiaTreatment=0;
+		ShowAmblyopia=0;
+		ShowEyePathway=0;
+		ShowDeficits=0;
+		ShowDeficitsQuiz=1;
+		DrawCanvas(1)
+	}
+	<!-- OnFoveal.onclick = function() { -->
+		<!-- PhNum=1; -->
+		<!-- //User_Ph_Num.value=1; -->
+		<!-- User_G_C_Num.value=1; -->
+		<!-- User_ONBip_GC.value=4; -->
+		<!-- User_OFFBip_GC.value=0 -->
+		<!-- User_A_GC.value=1 -->
+		<!-- DrawCanvas(1) -->
+	<!-- } -->
+	<!-- OffFoveal.onclick = function() { -->
+		<!-- PhNum=1; -->
+		<!-- //User_Ph_Num.value=1; -->
+		<!-- User_G_C_Num.value=1; -->
+		<!-- User_ONBip_GC.value=0; -->
+		<!-- User_OFFBip_GC.value=03; -->
+		<!-- User_A_GC.value=1 -->
+		<!-- DrawCanvas(1) -->
+	<!-- } -->
+	<!-- ONCentersmall.onclick = function() { -->
+		<!-- PhNum=3; -->
+		<!-- //User_Ph_Num.value=3; -->
+		<!-- User_G_C_Num.value=1; -->
+		<!-- User_ONBip_GC.value=4; -->
+		<!-- User_OFFBip_GC.value=0 -->
+		<!-- User_ONBip_GS.value=0 -->
+		<!-- User_OFFBip_GS.value=0 -->
+		<!-- User_A_GC.value=0 -->
+		<!-- User_A_GS.value=3; -->
+		<!-- DrawCanvas(1) -->
+	<!-- } -->
+	<!-- ONCenterlarge.onclick = function() { -->
+		<!-- PhNum=7; -->
+		<!-- //User_Ph_Num.value=7; -->
+		<!-- User_G_C_Num.value=3; -->
+		<!-- User_ONBip_GC.value=4; -->
+		<!-- User_OFFBip_GC.value=0 -->
+		<!-- User_ONBip_GS.value=0 -->
+		<!-- User_OFFBip_GS.value=0 -->
+		<!-- User_A_GC.value=0 -->
+		<!-- User_A_GS.value=3; -->
+		<!-- DrawCanvas(1) -->
+	<!-- } -->
+</script>
+
+</body>
+</html>

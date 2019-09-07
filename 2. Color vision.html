@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p><b>Light perception</b></p>
+Rods state:
+<button onclick="plot(1)">Dark Adapted</button>
+<button onclick="plot(.3)">Light Adapted</button>.
+Duplicate the perceived image <button onclick="Duplicateresponse()">Duplicate</button></p>
+<canvas id="RetinaCanvas" width="462" height="710" style="border:1px solid #d3d3d3"></canvas>
+	<p><b>Instructions:</b></p>
+	Visual perception depends on the stimulated area of the retina. At low (scotopic) light levels only the rod system is active.
+	<li>Set the <b>Luminance</b> to 'Scotopic'. Click on the retina and observe the perceived text. It may help to dark-adapt the retina!
+	<br>The fovea is the central gray region at the intersection of the dotted lines. What happens when the stimulation is focused on the fovea? Why? 
+	<br>Can you find the blind spot? 
+	<li>Change the wavelength. What colors are perceived best? 
+	<br>What light wavelengths would you recommend for a night-vision display? How about an environment that doesn't interfere with dark adaptation? 
+	<p><li>Set the <b>Luminance</b> to 'Photopic'. Only cones are active at these light levels. Click on the retina and observe the perceived text. Where can you read it?
+	<br>Does the perceived color matches the 'rainbow' above the stimulation wavelength? Why?
+	<p><li>Set the <b>Luminance</b> to 'Mesopic'. Compare the color perception over the fovea, and over adjacent regions. Can you explain this result?	
+	<p><b>Color blindness:</b> Click on the cone symbols on the right to simulate color perception in the absence of some of the cone types. 
+	Red-green is the most common color blindness. Simulate it by inactivating the green cone. Now try to match color perception of 520 and 560nm wavelength light.
+	<br>Hint: start with one wavelength and click on <b>Duplicate</b> to save the perceived image. Now shift the wavelength and the intensity of the light till the new output is similar to the original image. 
+	<br>Repeat the exercise with trichromatic cone setup. What is the difference between the simulations?  
+	<p><b>Notes:</b></p>
+	Central retina is cone-dominated retina whereas peripheral retina is rod-dominated. 
+	The center of the fovea is known as the fovea.
+	The fovea lies in the middle of the macula area of the retina to the temporal side of the optic nerve head.
+	It is an area where cone photoreceptors are concentrated at maximum density, with exclusion of the rods, and arranged at their most efficient packing density which is in a hexagonal mosaic. 
+	<p><b>Color vision:</b>
+	As we have seen before, Rods are very sensitive but slow and their response saturates at light levels where cones function optimally. 
+	Cones are less sensitive but are fast and can adapt to the brightest lights, being almost impossible to saturate. 
+	A photoreceptor responds only to the energy it absorbs. 
+	All wavelength of light can produce identical responses from a photoreceptor if the energy absorbed by the cone is the same for these wavelengths.
+	Cones are therefore color blind producing a univariant response reflecting only the amount of energy they absorb. 
+	Detecting objects by the energy reflected from their surfaces, however, can fail when objects reflect a similar amount of energy as their background. 
+	Here is where color vision becomes important. 
+	Wavelength contrast can detect objects when energy contrast is absent or minimal.
+	In order to detect objects by differences in spectral reflectance, two or more different types of cones are needed. 
+	This is an important concept for understanding color vision. 
+	For divariant color vision, two cone types must exist and be sensitive to different parts of the visible spectrum, preferably as different as possible. 
+	The range of the visible spectrum depends on the ability of light to penetrate the eye and be absorbed by the photoreceptors. 
+	Ultra-violet light is absorbed by the anterior segment of our eyes and seldom reaches the photoreceptors. 
+	Infra-red light penetrates our eye readily but its quantal energy may be too small to activate opsins. 
+	<p><b>Color blindness</b></p>
+	The most common cause of color blindness is an inherited problem in the development of one or more of the three sets of color sensing cones in the eye. 
+	Males are more likely to be color blind than females, as the genes responsible for the most common forms of color blindness are on the X chromosome.
+	Red-green color blindness is the most common form, followed by blue-yellow color blindness and total color blindness. 
+	Red-green color blindness affects up to 8% of males and 0.5% of females of Northern European descent.
+	</p><a href="https://webvision.med.utah.edu/book/part-i-foundations/simple-anatomy-of-the-retina/">https://webvision.med.utah.edu/book/part-i-foundations/simple-anatomy-of-the-retina/</a>
+	</p><a href="https://webvision.med.utah.edu/book/part-vii-color-vision/color-vision/">https://webvision.med.utah.edu/book/part-vii-color-vision/color-vision/</a>
+	</p><a href="https://en.wikipedia.org/wiki/Color_blindness">https://en.wikipedia.org/wiki/Color_blindness</a>
+	</p><i> Composed by Alon Poleg-Polsky, 2019</p>alon.poleg-polsky@ucdenver.edu</i>
+<div>
+
+	</div>
+<script>
+
+	var canvas = document.getElementById("RetinaCanvas");
+	var ctx = canvas.getContext("2d");
+	var DarkAdapted=0.3;
+	var SetLum=0;
+	var SetWL=500;
+	var Bcone=new Array(400);
+	var Gcone=new Array(400);
+	var Rcone=new Array(400);
+	var Rod=new Array(400);
+	//---the shape of the receptive field
+	var RF_left=60,RF_right=350,RF_top=50,RF_bottom=230,RF_Fx=150,RF_Fy=140,RF_Bx=200;
+	var DIST_left=70,DIST_width=240;
+	var WL_left=28,WL_width=360,WL_top=580,WL_height=30
+	var SetMouseX=90,SetMouseY=90;
+	var LL_left=28,LL_width=360,LL_top=400,LL_height=30
+
+	var PhLeft=LL_left+LL_width-5,PhSpace=20,PhWidth=5,PhTop=LL_top+65;
+
+	var ColorAbility=[1,1,1];
+	var imgData=ctx.getImageData(RF_left,RF_top,RF_right-RF_left,RF_bottom-RF_top);
+	var CopyImageVIEW;//=CreateImageArray(55,55);
+	var Copydata=0;
+	var WLData;
+	var RodDistribution=new Array(DIST_width);
+	var ConeDistribution=new Array(DIST_width);
+	for(var dist=0;dist<DIST_width;dist++){
+		ConeDistribution[dist]=Math.min(Math.exp(-Math.pow(dist-RF_Fx+DIST_left,2)/150)+.2,1)
+		RodDistribution[dist]=Math.min(Math.exp(-Math.pow(dist-RF_Fx+DIST_left,2)/30000),1)
+		RodDistribution[dist]-=Math.min(Math.exp(-Math.pow(dist-RF_Fx+DIST_left,2)/30),1)
+	}
+	function CreateImageArray(rows,cols) {
+		var arr = new Array(rows);
+		for (var row=0;row<rows;row++) {
+			arr[row] = new Array(cols);
+		}
+		return arr;
+	}
+	//-
+	RF=function(){
+		//---distribution
+		var DIST_top=RF_bottom+40,DIST_height=50;
+		ctx.beginPath();
+		ctx.strokeStyle='rgb(0,0,0)';
+		ctx.setLineDash([1, 2]);
+		ctx.moveTo(DIST_left,RF_Fy);
+		ctx.lineTo(DIST_left,DIST_top+DIST_height);
+		ctx.moveTo(DIST_left+DIST_width,RF_Fy);
+		ctx.lineTo(DIST_left+DIST_width,DIST_top+DIST_height);
+		ctx.stroke();
+		ctx.closePath();
+		ctx.beginPath();
+		ctx.setLineDash([]);
+		ctx.strokeStyle="red";
+		ctx.lineWidth=2;
+		ctx.moveTo(DIST_left,DIST_top+DIST_height*(1-ConeDistribution[0]));
+		for(var dist=0;dist<DIST_width;dist++){
+			ctx.lineTo(DIST_left+dist,DIST_top+DIST_height*(1-ConeDistribution[dist]));
+		}
+		ctx.stroke();
+		ctx.closePath();
+		ctx.beginPath();
+		ctx.strokeStyle='rgb(128,128,128)';
+		ctx.moveTo(DIST_left,DIST_top+DIST_height*(1-RodDistribution[0]));
+		for(var dist=0;dist<DIST_width;dist++){
+			ctx.lineTo(DIST_left+dist,DIST_top+DIST_height*(1-RodDistribution[dist]));
+		}
+		ctx.stroke();
+		ctx.closePath();
+		//---the RF
+		//---text
+		ctx.beginPath();
+		ctx.font = "900 20px Arial";
+		ctx.fillStyle="black";
+		ctx.textAlign = "center";
+		ctx.fillText("Right Eye",RF_Fx,RF_top-20);
+		ctx.closePath();
+		ctx.beginPath();
+		ctx.font = "12px Arial";
+		ctx.fillText("Superior",RF_Fx,RF_top-5);
+		ctx.fillText("Inferior",RF_Fx,RF_bottom+0);
+		ctx.fillText("Nasal",RF_left-10,RF_Fy);
+		ctx.fillText("Temporal",RF_right-10,RF_Fy);
+		
+		ctx.fillText("Fovea",RF_Fx,DIST_top+DIST_height+15);
+		ctx.fillText("Rods",DIST_left-20,DIST_top+DIST_height*(1-RodDistribution[0])+6);
+		ctx.closePath();
+		ctx.beginPath();
+		ctx.fillStyle="red";
+		ctx.fillText("Cones",DIST_left-20,DIST_top+DIST_height*(1-ConeDistribution[0])+3);
+
+		ctx.closePath();
+		ctx.beginPath();
+		ctx.fillStyle='rgb(200,200,200)';
+		ctx.lineWidth=3;
+		ctx.strokeStyle="black";
+		ctx.moveTo(RF_right-150,RF_bottom);
+		ctx.bezierCurveTo(RF_right,RF_bottom,RF_right,RF_top+10,RF_Fx+30,RF_top);
+		ctx.bezierCurveTo(RF_left,RF_top,RF_left,RF_Fy,RF_left+20,RF_Fy+20);
+		ctx.bezierCurveTo(RF_left+60,RF_Fy+20,RF_Fx,RF_bottom,RF_right-150,RF_bottom);
+		ctx.fill();
+		ctx.stroke();
+		ctx.closePath();
+		//---save the RF
+		imgData=ctx.getImageData(RF_left,RF_top,RF_right-RF_left,RF_bottom-RF_top);
+		ctx.beginPath();	//---lines to indicate the fovea
+		ctx.strokeStyle="white";
+		//ctx.strokeStyle="black";
+		ctx.setLineDash([1, 5]);
+		ctx.moveTo(RF_left+15,RF_Fy);
+		ctx.lineTo(RF_Fx-12,RF_Fy);
+		ctx.moveTo(RF_Fx+14,RF_Fy);
+		ctx.lineTo(RF_right-45,RF_Fy);
+		
+		ctx.moveTo(RF_Fx,RF_top+5);
+		ctx.lineTo(RF_Fx,RF_Fy-12);
+		ctx.moveTo(RF_Fx,RF_Fy+14);
+		ctx.lineTo(RF_Fx,RF_bottom-25);
+		ctx.stroke();
+		ctx.beginPath();//---fovea
+		ctx.setLineDash([1, 2]);
+		ctx.fillStyle='rgb(180,180,180)';
+		ctx.arc(RF_Fx,RF_Fy,8,0,Math.PI*2)
+		//ctx.stroke();
+		ctx.fill();
+		ctx.closePath();
+		ctx.beginPath();//---blind spot
+		ctx.fillStyle='rgb(230,230,230)';
+		ctx.arc(RF_Bx,RF_Fy,10,0,Math.PI*2)
+		ctx.fill();
+		ctx.closePath();
+		ctx.setLineDash([]);
+	}
+	//---shows the perceived image
+	CalcResult=function(){
+		//---result
+		if(SetMouseX>-1){//---do the calculation
+			//---mark the spot
+			ctx.beginPath();//--- +
+			ctx.lineWidth=1;
+			ctx.strokeStyle='rgb('+WLData.data[Math.round((SetWL-400)*WL_width/400)*4]+','+WLData.data[Math.round((SetWL-400)*WL_width/400)*4+1]+','+WLData.data[Math.round((SetWL-400)*WL_width/400)*4+2]+')';
+			ctx.moveTo(SetMouseX+RF_left-10,SetMouseY+RF_top)
+			ctx.lineTo(SetMouseX+RF_left+10,SetMouseY+RF_top)
+			ctx.moveTo(SetMouseX+RF_left,SetMouseY+RF_top-10)
+			ctx.lineTo(SetMouseX+RF_left,SetMouseY+RF_top+10)
+			ctx.stroke();
+			ctx.closePath();
+			//---number of activated cells
+			var Fdistance=Math.floor(Math.pow(Math.pow(SetMouseX+RF_left-RF_Fx,2)+Math.pow(SetMouseY+RF_top-RF_Fy,2),.5))
+			var RodNumber=RodDistribution[Fdistance+RF_Fx-DIST_left]
+			var ConeNumber=ConeDistribution[Fdistance+RF_Fx-DIST_left]
+			if((Math.abs(SetMouseX-RF_Bx+RF_left)<10)&&(Math.abs(SetMouseY-RF_Fy+RF_top)<10)){//---blind spot
+				RodNumber=0
+				ConeNumber=0
+			}
+			//---frame
+			var RES_left=400,RES_top=40,RES_GAUGE_Y=80
+			ctx.beginPath();
+			ctx.lineWidth=2;
+			ctx.fillStyle='rgb(230,230,230)';
+			ctx.strokeStyle='rgb(0,0,0)';
+			ctx.rect(RES_left,RES_top-5,55,170);
+			ctx.stroke();
+			ctx.fill();
+			ctx.closePath();
+			ctx.font = "16px Arial";
+			ctx.fillStyle='rgb(0,0,0)';
+			ctx.textAlign = "center";
+			ctx.fillText("Output",RES_left+27.5,RES_top+10)
+			ctx.closePath();
+			ctx.beginPath();//---rod
+			ctx.lineWidth=2;
+			ctx.fillStyle='rgb(128,128,128)';
+			ctx.strokeStyle='rgb(0,0,0)';
+			ctx.rect(RES_left+10,RES_top+20,6,RES_GAUGE_Y)
+			ctx.stroke();
+			ctx.closePath();
+			ctx.beginPath();
+			ctx.rect(RES_left+10,RES_top+20+RES_GAUGE_Y-Rod[SetWL-400]*(RES_GAUGE_Y)*RodNumber,6,Rod[SetWL-400]*(RES_GAUGE_Y)*RodNumber)
+			ctx.fill();
+			ctx.closePath();
+			ctx.beginPath();//---B
+			ctx.fillStyle='rgb(0,0,255)';
+			ctx.rect(RES_left+20,RES_top+20,6,RES_GAUGE_Y)
+			ctx.stroke();
+			ctx.closePath();
+			ctx.beginPath();
+			ctx.rect(RES_left+20,RES_top+20+RES_GAUGE_Y-Bcone[SetWL-400]*(RES_GAUGE_Y)*ConeNumber,6,Bcone[SetWL-400]*(RES_GAUGE_Y)*ConeNumber)
+			ctx.fill();
+			ctx.closePath();
+			ctx.beginPath();//---G
+			ctx.fillStyle='rgb(0,255,0)';
+			ctx.rect(RES_left+30,RES_top+20,6,RES_GAUGE_Y)
+			ctx.stroke();
+			ctx.closePath();
+			ctx.beginPath();
+			ctx.rect(RES_left+30,RES_top+20+RES_GAUGE_Y-Gcone[SetWL-400]*(RES_GAUGE_Y)*ConeNumber,6,Gcone[SetWL-400]*(RES_GAUGE_Y)*ConeNumber)
+			ctx.fill();
+			ctx.closePath();
+			ctx.beginPath();//---R
+			ctx.fillStyle='rgb(255,0,0)';
+			ctx.rect(RES_left+40,RES_top+20,6,RES_GAUGE_Y)
+			ctx.stroke();
+			ctx.closePath();
+			ctx.beginPath();
+			ctx.rect(RES_left+40,RES_top+20+RES_GAUGE_Y-Rcone[SetWL-400]*(RES_GAUGE_Y)*ConeNumber,6,Rcone[SetWL-400]*(RES_GAUGE_Y)*ConeNumber)
+			ctx.fill();
+			ctx.closePath();
+			//---the image
+			var IMGsize=45;
+			ctx.beginPath();
+			ctx.fillStyle='rgb(0,0,0)';
+			ctx.strokeStyle='rgb(0,0,0)';
+			ctx.rect(RES_left+5,RES_top+30+RES_GAUGE_Y,IMGsize,IMGsize);
+			ctx.fill();
+			ctx.stroke();
+			ctx.closePath();
+			ctx.beginPath();
+			var r=Rcone[SetWL-400]*ConeNumber+Rod[SetWL-400]*RodNumber*(1-Rcone[SetWL-400]*ConeNumber);
+			var g=Gcone[SetWL-400]*ConeNumber+Rod[SetWL-400]*RodNumber*(1-Gcone[SetWL-400]*ConeNumber);
+			var b=Bcone[SetWL-400]*ConeNumber+Rod[SetWL-400]*RodNumber*(1-Bcone[SetWL-400]*ConeNumber);
+			var dist=Math.round(Math.pow(Fdistance/10,.5));
+			var norm=Math.max(r,g,b,1)*(1+1*(dist>0));
+			r/=norm;
+			g/=norm;
+			b/=norm;
+			ctx.fillStyle='rgb('+Math.round(r*255)+','+Math.round(g*255)+','+Math.round(b*255)+')';
+			ctx.font = "16px Arial";
+
+			ctx.fillText("Test",RES_left+27.5,RES_top+55+RES_GAUGE_Y)
+			//ctx.fillText('rgb('+Math.round(r*255)+','+Math.round(g*255)+','+Math.round(b*255)+')',RES_left-20,RES_top+95+RES_GAUGE_Y)
+			ctx.closePath();
+			var IMdata=ctx.getImageData(RES_left+5,RES_top+30+RES_GAUGE_Y,IMGsize,IMGsize);
+			ctx.fillStyle="black";
+			var OrigImageVIEW=CreateImageArray(IMGsize,IMGsize);
+			var BlurImageVIEW=CreateImageArray(IMGsize,IMGsize);
+			
+			var IMdataBLUR=ctx.getImageData(RES_left+5,RES_top+30+RES_GAUGE_Y,IMGsize,IMGsize);
+			
+			if(dist>0){
+				for(var col=0;col<3;col++){//---RGB blur
+					for(var i=0;i<IMGsize;i++){//---copy array
+						for(var j=0;j<IMGsize;j++){
+							OrigImageVIEW[i][j]=IMdata.data[4*(i+j*IMGsize)+col]
+						}
+					}
+					for(var i=0;i<IMGsize;i++){//---blur array
+						for(var j=0;j<IMGsize;j++){
+							var sum=0,count=0;
+							for(var blurX=-dist;blurX<=dist;blurX++){
+								for(var blurY=-dist;blurY<=dist;blurY++){
+									if( (i+blurX>=0)&&(i+blurX<IMGsize)&&(j+blurY>=0)&&(j+blurY<IMGsize) ){
+										sum+=OrigImageVIEW[i+blurX][j+blurY]
+										count+=.15;
+									}
+								}
+							}
+							BlurImageVIEW[i][j]=sum/count;
+						}
+					}
+					for(var i=0;i<IMGsize;i++){//---copy array back
+						for(var j=0;j<IMGsize;j++){
+							IMdataBLUR.data[(i+j*IMGsize)*4+col]=BlurImageVIEW[i][j];
+						}
+					}
+				}
+			}
+			ctx.putImageData(IMdataBLUR,RES_left+5,RES_top+30+RES_GAUGE_Y);
+			//---copy image
+			if(Copydata){			
+				ctx.putImageData(CopyImageVIEW,400,220);
+				ctx.fillStyle='rgb(0,0,0)'
+				ctx.font = "12px Arial";
+				ctx.textAlign = "center"; 
+				ctx.fillText("copy",400+27.5,218)
+			}
+		}
+	}
+	//---shows the light level range and selects the current light level
+	LightLevel=function(){
+		ctx.beginPath();	//---background
+		ctx.lineWidth=1
+		ctx.setLineDash([]);
+		ctx.strokeStyle='rgb(0,0,0)'
+		ctx.fillStyle='rgb(250,250,250)'
+		ctx.rect(1,LL_top-60,LL_width+100,180);
+		ctx.fill();
+		ctx.stroke();
+		ctx.closePath();
+		ctx.beginPath();
+		ctx.font = "12px Arial";
+		ctx.textAlign = "center";
+		ctx.fillStyle='rgb(128,128,128)';
+		ctx.strokeStyle='rgb(220,220,220)';
+		ctx.setLineDash([1, 2]);
+		for(var lum=-6;lum<10;lum+=2){
+			ctx.fillText(lum,LL_left+LL_width/16*(lum+6)+20,LL_top-30);
+			ctx.moveTo(LL_left+LL_width/16*(lum+6)+20,LL_top-28);
+			ctx.lineTo(LL_left+LL_width/16*(lum+6)+20,LL_top);
+		}
+		ctx.stroke();
+		ctx.closePath();
+		ctx.setLineDash([]);
+		ctx.fillText("Luminance (log cd/m⁻²)",LL_left+LL_width/2,LL_top-45);
+		ctx.beginPath();//---scale
+		var grd=ctx.createLinearGradient(LL_left,LL_top,LL_width,LL_top);
+		grd.addColorStop(0,'rgb(64,64,64)');
+		grd.addColorStop(1,"white");
+		ctx.fillStyle=grd;
+		ctx.strokeStyle="black";
+		
+		ctx.rect(LL_left,LL_top,LL_width,LL_height);
+		ctx.fill();
+		ctx.stroke();
+		ctx.closePath();
+		
+		ctx.font = "900 20px Arial";
+		ctx.beginPath();
+		ctx.fillStyle='rgb(0,0,0)'
+		ctx.fillText("Scotopic",LL_left+60,LL_top+22);
+		ctx.fillText("Mesopic",LL_left+LL_width/2,LL_top+22);
+		ctx.fillText("Photopic",LL_left+LL_width-60,LL_top+22);
+		ctx.closePath();
+		ctx.beginPath();
+		ctx.font = "12px Arial";
+		ctx.fillText("Startlight",LL_left+100,LL_top-5);
+		ctx.fillText("Moonlight",LL_left+LL_width/2,LL_top-5);
+		ctx.fillText("Lightbulb",LL_left+LL_width/2+60,LL_top-5);
+		ctx.fillText("Sunlight",LL_left+LL_width-40,LL_top-5);
+		ctx.closePath();
+		//---selector
+		ctx.beginPath();
+		ctx.fillStyle="white";
+		ctx.strokeStyle="black";
+		ctx.moveTo(LL_left+LL_width/16*(SetLum+6)+20,LL_top+25) 
+		ctx.lineTo(LL_left+LL_width/16*(SetLum+6)+25,LL_top+30) 
+		ctx.lineTo(LL_left+LL_width/16*(SetLum+6)+25,LL_top+35) 
+		ctx.lineTo(LL_left+LL_width/16*(SetLum+6)+15,LL_top+35) 
+		ctx.lineTo(LL_left+LL_width/16*(SetLum+6)+15,LL_top+30) 
+		ctx.lineTo(LL_left+LL_width/16*(SetLum+6)+20,LL_top+25) 
+		ctx.fill();
+		ctx.stroke();
+		ctx.closePath();
+		//---cones
+		ctx.fillStyle="black";
+		ctx.font = "900 20px Arial";
+		ctx.fillText("Cone",PhLeft+PhSpace*2,PhTop-10);
+		for(var ph=1;ph<=3;ph++){
+			//---photoreceptor outer segment
+			ctx.beginPath();
+			ctx.fillStyle='rgba('+(ph==3)*255+','+(ph==2)*255+','+(ph==1)*255+',10)';
+			if(ColorAbility[ph-1]==0){ctx.fillStyle="black"}
+			ctx.strokeStyle=ctx.fillStyle;
+			ctx.lineWidth=3;
+			ctx.moveTo(PhLeft+PhSpace*ph-PhWidth,PhTop+40);
+			ctx.lineTo(PhLeft+PhSpace*ph-PhWidth,PhTop);
+			ctx.lineTo(PhLeft+PhSpace*ph+PhWidth*2,PhTop+25);
+			ctx.lineTo(PhLeft+PhSpace*ph-PhWidth,PhTop+27);
+			ctx.stroke();
+			ctx.fill();
+			ctx.closePath();
+			//---somas
+			ctx.beginPath();
+			ctx.lineWidth=4;
+			ctx.arc(PhLeft+PhSpace*ph,PhTop+40,PhWidth+2,0,2*Math.PI);
+			ctx.stroke();
+			ctx.fill();
+			ctx.closePath();
+			//---activation-color vision
+			ctx.beginPath();
+			ctx.strokeStyle='rgb(0,0,0)';
+			ctx.fillStyle="white"
+			ctx.lineWidth=1;
+			if(ColorAbility[ph-1]){//---check
+				ctx.arc(PhLeft+PhSpace*ph,PhTop+40,PhWidth+2,0,2*Math.PI);
+				ctx.moveTo(PhLeft+PhSpace*ph-3,PhTop+40-1);
+				ctx.lineTo(PhLeft+PhSpace*ph-1,PhTop+40+2);
+				ctx.lineTo(PhLeft+PhSpace*ph+4,PhTop+40-2);
+			}else{
+				ctx.strokeStyle='rgb(128,128,128)';
+				ctx.arc(PhLeft+PhSpace*ph,PhTop+40,PhWidth+2,0,2*Math.PI);
+				ctx.moveTo(PhLeft+PhSpace*ph+5,PhTop+40-5);
+				ctx.lineTo(PhLeft+PhSpace*ph-5,PhTop+40+5);
+			}
+			ctx.stroke();
+			ctx.closePath();
+			//---activation intensities
+			if(ColorAbility[ph-1]){
+				ctx.beginPath();
+				var grd=ctx.createLinearGradient(PhLeft-LL_width/2-55,0,PhLeft-10,0);
+				grd.addColorStop(0,"white");
+				grd.addColorStop(1,'rgb('+(ph==3)*255+','+(ph==2)*255+','+(ph==1)*255+')');
+				ctx.fillStyle=grd;	
+				ctx.rect(PhLeft-LL_width/2-50,PhTop+10*ph,LL_width/2+55,10);
+				ctx.fill();
+				ctx.closePath();
+			}
+		}
+		//---rod
+		ctx.beginPath();
+		var PhotoLeft=LL_left-5
+		ctx.fillStyle="black";
+		ctx.fillText("Rod",PhotoLeft,PhTop-10);
+		ctx.fillStyle='rgb(128,128,128)';
+		ctx.strokeStyle=ctx.fillStyle;
+		ctx.lineWidth=3;
+		ctx.moveTo(PhotoLeft-2,PhTop+40);
+		ctx.lineTo(PhotoLeft-2,PhTop);
+		ctx.rect(PhotoLeft-2,PhTop-7,PhWidth+2,35);
+		ctx.closePath();
+		//---soma
+		ctx.stroke();
+		ctx.fill();
+		ctx.beginPath();
+		ctx.lineWidth=4;
+		ctx.arc(PhotoLeft,PhTop+40,PhWidth-1,0,2*Math.PI);
+		ctx.stroke();
+		ctx.fill();
+		ctx.closePath();
+		//---activation intensities
+		ctx.beginPath();
+		var grd=ctx.createLinearGradient(PhotoLeft+10,PhTop+10,LL_left+LL_width/2+55,PhTop+10);
+		grd.addColorStop(0.7,'rgb(128,128,128)');
+		grd.addColorStop(1,"white");
+		ctx.fillStyle=grd;	
+		ctx.rect(PhotoLeft+10,PhTop-5,LL_left+LL_width/2+20,10);
+		ctx.fill();
+		ctx.closePath();
+	}
+	//---shows the light level range and selects the current light level
+	Wavelength=function(DarkAdaptedVal){
+		DarkAdapted=DarkAdaptedVal
+		ctx.beginPath();	//---background
+		ctx.lineWidth=1
+		ctx.setLineDash([]);
+		ctx.strokeStyle='rgb(0,0,0)'
+		ctx.fillStyle='rgb(250,250,250)'
+		ctx.rect(1,WL_top-50,WL_width+100,180);
+		ctx.fill();
+		ctx.stroke();
+		ctx.closePath();
+		//---rainbow
+		ctx.beginPath();
+		var grd=ctx.createLinearGradient(WL_left,0,WL_width,0);
+		grd.addColorStop(0,'rgb(100,50,150)');
+		grd.addColorStop(0.15,'rgb(0,0,255)');
+		grd.addColorStop(0.25,'rgb(0,255,255)');
+		grd.addColorStop(0.33,'rgb(0,255,0)');//---green
+		grd.addColorStop(0.45,'rgb(255,255,0)');//---yellow
+		grd.addColorStop(0.7,'rgb(255,0,0)');
+		grd.addColorStop(01,'rgb(150,50,50)');
+		ctx.fillStyle=grd;
+		ctx.rect(WL_left,WL_top,WL_width,10);
+		ctx.fill();
+		ctx.stroke();
+		ctx.closePath();
+		WLData=ctx.getImageData(WL_left,WL_top+1,WL_width,1);
+
+		ctx.beginPath();//---wavelength
+		ctx.font = "12px Arial";
+		ctx.textAlign = "center";
+		ctx.fillStyle='rgb(128,128,128)';
+		ctx.strokeStyle='rgb(220,220,220)';
+		ctx.setLineDash([1, 2]);
+		for(var wl=400;wl<=800;wl+=100){
+			ctx.fillText(wl,WL_left+WL_width/4*(wl-400)/100,WL_top-12);
+			ctx.moveTo(WL_left+WL_width/4*(wl-400)/100,WL_top-10);
+			ctx.lineTo(WL_left+WL_width/4*(wl-400)/100,WL_top-1);
+		}
+		ctx.stroke();
+		ctx.closePath();
+		ctx.setLineDash([]);
+		ctx.fillText("Wavelength (nm)",WL_left+WL_width/2,WL_top-28);
+		//---selector
+		ctx.beginPath();
+		ctx.fillStyle="white";
+		ctx.strokeStyle="black";
+		ctx.moveTo(WL_left+WL_width/4*(SetWL-400)/100,WL_top+5) 
+		ctx.lineTo(WL_left+WL_width/4*(SetWL-400)/100+5,WL_top+10) 
+		ctx.lineTo(WL_left+WL_width/4*(SetWL-400)/100+5,WL_top+15) 
+		ctx.lineTo(WL_left+WL_width/4*(SetWL-400)/100-5,WL_top+15) 
+		ctx.lineTo(WL_left+WL_width/4*(SetWL-400)/100-5,WL_top+10) 
+		ctx.lineTo(WL_left+WL_width/4*(SetWL-400)/100,WL_top+5) 
+
+		ctx.fill();
+		ctx.stroke();
+		ctx.closePath();
+		//---absorbance
+		var Abs_y=100
+		ctx.beginPath();
+		
+		ctx.lineWidth=3;
+		var ConeLum=Math.min(1,(SetLum>=-1)*(SetLum+1)/3)
+		var RodLum=Math.min(1,(SetLum+7)/16*(SetLum<=4)*(4-SetLum)/3)
+		for(var wl=400;wl<=800;wl++){
+			Bcone[wl-400]=Math.exp(-Math.pow(wl-420,2)/4000)*ConeLum*ColorAbility[0]
+			Gcone[wl-400]=Math.exp(-Math.pow(wl-515,2)/8000)*ConeLum*ColorAbility[1]
+			Gcone[wl-400]+=Math.exp(-Math.pow(wl-380,2)/3000)/10*ConeLum*ColorAbility[1]
+			Rcone[wl-400]=Math.exp(-Math.pow(wl-560,2)/10000)*ConeLum*ColorAbility[2]
+			Rcone[wl-400]+=Math.exp(-Math.pow(wl-390,2)/3000)/7*ConeLum*ColorAbility[2]
+			Rod[wl-400]=Math.exp(-Math.pow(wl-500,2)/8000)*DarkAdapted*RodLum
+		}
+		
+		ctx.beginPath();//---blue
+		ctx.strokeStyle='rgb(0,0,255)';
+		ctx.moveTo(WL_left,WL_top+Abs_y-Bcone[0]*(Abs_y-20));
+		for(var wl=400;wl<=800;wl++){
+			ctx.lineTo(WL_left+(wl-400)/400*WL_width,WL_top+Abs_y-Bcone[wl-400]*(Abs_y-20));
+		}
+		ctx.stroke();
+		ctx.closePath();
+		ctx.beginPath();//---green
+		ctx.strokeStyle='rgb(0,255,0)';
+		ctx.moveTo(WL_left,WL_top+Abs_y-Gcone[0]*(Abs_y-20));
+		for(var wl=400;wl<=800;wl++){
+			ctx.lineTo(WL_left+(wl-400)/400*WL_width,WL_top+Abs_y-Gcone[wl-400]*(Abs_y-20));
+		}
+		ctx.stroke();
+		ctx.closePath();
+		ctx.beginPath();//---red
+		ctx.strokeStyle='rgb(255,0,0)';
+		ctx.moveTo(WL_left,WL_top+Abs_y-Rcone[0]*(Abs_y-20));
+		for(var wl=400;wl<=800;wl++){
+			ctx.lineTo(WL_left+(wl-400)/400*WL_width,WL_top+Abs_y-Rcone[wl-400]*(Abs_y-20));
+		}
+		ctx.stroke();
+		ctx.closePath();
+		ctx.beginPath();//---rod
+		ctx.strokeStyle='rgb(128,128,128)';
+		ctx.moveTo(WL_left,WL_top+Abs_y-Rod[0]*(Abs_y-20));
+		for(var wl=400;wl<=800;wl++){
+			ctx.lineTo(WL_left+(wl-400)/400*WL_width,WL_top+Abs_y-Rod[wl-400]*(Abs_y-20));
+		}
+		ctx.stroke();
+		ctx.closePath();
+		//---gauges
+		ctx.beginPath();//---rod
+		ctx.lineWidth=2;
+		ctx.fillStyle='rgb(128,128,128)';
+		ctx.strokeStyle='rgb(0,0,0)';
+		ctx.rect(WL_left+WL_width+10,WL_top+20,6,Abs_y-20)
+		ctx.stroke();
+		ctx.closePath();
+		ctx.beginPath();//---rod
+		ctx.rect(WL_left+WL_width+10,WL_top+Abs_y-Rod[SetWL-400]*(Abs_y-20),6,Rod[SetWL-400]*(Abs_y-20))
+		ctx.fill();
+		ctx.closePath();
+		ctx.beginPath();//---B
+		ctx.fillStyle='rgb(0,0,255)';
+		ctx.rect(WL_left+WL_width+20,WL_top+Abs_y-Bcone[SetWL-400]*(Abs_y-20),6,Bcone[SetWL-400]*(Abs_y-20))
+		ctx.fill();
+		ctx.beginPath();//---B
+		ctx.rect(WL_left+WL_width+20,WL_top+20,6,Abs_y-20)
+		ctx.stroke();
+		ctx.closePath();
+		ctx.beginPath();//---G
+		ctx.fillStyle='rgb(0,255,0)';
+		ctx.rect(WL_left+WL_width+30,WL_top+Abs_y-Gcone[SetWL-400]*(Abs_y-20),6,Gcone[SetWL-400]*(Abs_y-20))
+		ctx.fill();
+		ctx.beginPath();//---G
+		ctx.rect(WL_left+WL_width+30,WL_top+20,6,Abs_y-20)
+		ctx.stroke();
+		ctx.closePath();
+		ctx.beginPath();//---R
+		ctx.fillStyle='rgb(255,0,0)';
+		ctx.rect(WL_left+WL_width+40,WL_top+Abs_y-Rcone[SetWL-400]*(Abs_y-20),6,Rcone[SetWL-400]*(Abs_y-20))
+		ctx.fill();
+		ctx.beginPath();//---R
+		ctx.rect(WL_left+WL_width+40,WL_top+20,6,Abs_y-20)
+		ctx.stroke();
+		ctx.closePath();
+		ctx.fillStyle='rgb(0,0,0)';
+		ctx.textAlign="left"
+		ctx.fillText(SetWL+"nm",WL_left+WL_width+2,WL_top+10);
+	}
+	//---copy the response
+	function Duplicateresponse(){
+		CopyImageVIEW=ctx.getImageData(400,145,55,55);
+		Copydata=1;
+		CalcResult();
+	}
+//	ctx.clearRect(0, 0, canvas.width, canvas.height);			//---erase the canvas
+	plot=function(DarkAdapted){
+		ctx.clearRect(0, 0, canvas.width, canvas.height);			//---erase the canvas
+		LightLevel();
+		Wavelength(DarkAdapted);
+		RF();
+		CalcResult();
+	}
+	plot(DarkAdapted);
+	canvas.onclick= function(){
+		//---RF location
+		if( (event.offsetX>RF_left)&&(event.offsetX<RF_right)&&(event.offsetY>RF_top)&&(event.offsetY<RF_bottom)){
+			if(imgData.data[(Math.round(event.offsetX-RF_left)+Math.round(event.offsetY-RF_top)*(RF_right-RF_left))*4]==200){
+				SetMouseX=Math.round(event.offsetX-RF_left)
+				SetMouseY=Math.round(event.offsetY-RF_top)
+				plot(DarkAdapted);
+			}
+		}
+		//---luminance
+		if( (event.offsetX>LL_left+20)&&(event.offsetX<LL_left+LL_width-20)&&(event.offsetY>LL_top)&&(event.offsetY<LL_top+LL_height)){
+			SetLum=Math.round((event.offsetX-LL_left-20)/LL_width*16-6)
+			plot(DarkAdapted);
+		}
+		//---color blindness
+		if( (event.offsetX>PhLeft+PhSpace-10)&&(event.offsetX<PhLeft+PhSpace*4)&&(event.offsetY>PhTop)&&(event.offsetY<PhTop+50)){
+			ColorAbility[Math.round((event.offsetX-PhLeft-PhSpace)/PhSpace)]=1-ColorAbility[Math.round((event.offsetX-PhLeft-PhSpace)/PhSpace)]
+			plot(DarkAdapted);
+		}
+		//PhLeft+PhSpace*ph+4,PhTop+40
+		//---wavelength
+		if( (event.offsetX>WL_left)&&(event.offsetX<WL_left+WL_width)&&(event.offsetY>WL_top)&&(event.offsetY<WL_top+WL_height)){
+			SetWL=Math.round((event.offsetX-WL_left)/WL_width*400+400)
+			plot(DarkAdapted);
+		}
+	}
+</script>
+
+</body>
+</html>
